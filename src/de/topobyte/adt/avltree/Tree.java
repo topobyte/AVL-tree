@@ -271,12 +271,17 @@ public class Tree<T extends Comparable<T>> implements Set<T>, SortedSet<T>,
 
 			if (i == 0) {
 				root = ensureBalanced(n);
+				ensureSizeAndHeight(root);
 			} else {
 				TreePathNode<T> parent = path.get(i - 1);
 				if (nr.getDirection() == Direction.Left) {
-					parent.getNode().setLeft(ensureBalanced(n));
+					Node<T> b = ensureBalanced(n);
+					ensureSizeAndHeight(b);
+					parent.getNode().setLeft(b);
 				} else if (nr.getDirection() == Direction.Right) {
-					parent.getNode().setRight(ensureBalanced(n));
+					Node<T> b = ensureBalanced(n);
+					ensureSizeAndHeight(b);
+					parent.getNode().setRight(b);
 				}
 			}
 		}
@@ -407,6 +412,56 @@ public class Tree<T extends Comparable<T>> implements Set<T>, SortedSet<T>,
 	}
 
 	/**
+	 * Find the index'th element within the ordered sequence of elements
+	 * represented by this subtree.
+	 */
+	private TreePath<T> findIndexPath(int index)
+	{
+		int size = size();
+		if (index >= size) {
+			return null;
+		}
+
+		TreePath<T> path = new TreePath<T>();
+
+		Node<T> p = null;
+		Node<T> n = root;
+		Direction d = null;
+		int idx = index;
+
+		while (true) {
+			path.add(p, d, n);
+			Node<T> left = n.getLeft();
+			Node<T> right = n.getRight();
+			if (left == null) {
+				if (idx == 0) {
+					break;
+				} else {
+					idx = idx - 1;
+					p = n;
+					n = right;
+					d = Direction.Right;
+				}
+			} else {
+				if (idx < left.getSize()) {
+					p = n;
+					n = left;
+					d = Direction.Left;
+				} else if (idx == left.getSize()) {
+					break;
+				} else {
+					idx = idx - left.getSize() - 1;
+					p = n;
+					n = right;
+					d = Direction.Right;
+				}
+			}
+		}
+
+		return path;
+	}
+
+	/**
 	 * Find the path to the predecessor of the node specified by <tt>path</tt>.
 	 * This method actually modifies the supplied path.
 	 */
@@ -514,6 +569,12 @@ public class Tree<T extends Comparable<T>> implements Set<T>, SortedSet<T>,
 			}
 		}
 		return n;
+	}
+
+	private void ensureSizeAndHeight(Node<T> n)
+	{
+		n.setHeight(max(height(n.getLeft()), height(n.getRight())) + 1);
+		n.calculateSize();
 	}
 
 	/*
@@ -865,14 +926,18 @@ public class Tree<T extends Comparable<T>> implements Set<T>, SortedSet<T>,
 	@Override
 	public T remove(int index)
 	{
-		// TODO: implement this
-		throw new UnsupportedOperationException();
+		TreePath<T> n = findIndexPath(index);
+		if (n == null) {
+			throw new IndexOutOfBoundsException();
+		}
+		T element = getElement(n.getTarget().getNode());
+		remove(n);
+		return element;
 	}
 
 	@Override
 	public T set(int index, T element)
 	{
-		// TODO: implement this
 		throw new UnsupportedOperationException();
 	}
 
