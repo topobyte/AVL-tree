@@ -107,6 +107,9 @@ public class Tree<T extends Comparable<T>> implements Set<T>, SortedSet<T>,
 		return getElement(findNode(e)) != null;
 	}
 
+	/**
+	 * Get the element at position <tt>index</tt>
+	 */
 	public T getElement(int index)
 	{
 		return getElement(findIndex(index));
