@@ -878,14 +878,24 @@ public class Tree<T extends Comparable<T>> implements Set<T>, SortedSet<T>,
 	@Override
 	public void add(int index, T element)
 	{
-		// TODO: implement this
+		// this method is in contradiction with the automatic sorting of the
+		// tree
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public boolean addAll(int index, Collection<? extends T> c)
 	{
-		// TODO: implement this
+		// this method is in contradiction with the automatic sorting of the
+		// tree
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public T set(int index, T element)
+	{
+		// this method is in contradiction with the automatic sorting of the
+		// tree
 		throw new UnsupportedOperationException();
 	}
 
@@ -893,6 +903,18 @@ public class Tree<T extends Comparable<T>> implements Set<T>, SortedSet<T>,
 	public T get(int index)
 	{
 		return getElement(index);
+	}
+
+	@Override
+	public T remove(int index)
+	{
+		TreePath<T> n = findIndexPath(index);
+		if (n == null) {
+			throw new IndexOutOfBoundsException();
+		}
+		T element = getElement(n.getTarget().getNode());
+		remove(n);
+		return element;
 	}
 
 	@Override
@@ -920,24 +942,6 @@ public class Tree<T extends Comparable<T>> implements Set<T>, SortedSet<T>,
 	public ListIterator<T> listIterator(int index)
 	{
 		// TODO: implement this
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public T remove(int index)
-	{
-		TreePath<T> n = findIndexPath(index);
-		if (n == null) {
-			throw new IndexOutOfBoundsException();
-		}
-		T element = getElement(n.getTarget().getNode());
-		remove(n);
-		return element;
-	}
-
-	@Override
-	public T set(int index, T element)
-	{
 		throw new UnsupportedOperationException();
 	}
 
