@@ -78,7 +78,7 @@ public class TestInsertRemoveIndex
 			System.out.println("tree: " + tree.toFoldedString());
 		}
 
-		if (!tree.checkBalaned()) {
+		if (!tree.checkBalanced()) {
 			System.out.println("not balanced");
 			System.exit(1);
 		}

@@ -710,7 +710,7 @@ public class Tree<T extends Comparable<T>> implements Set<T>, SortedSet<T>,
 	/**
 	 * Check whether the tree is balanced.
 	 */
-	public boolean checkBalaned()
+	public boolean checkBalanced()
 	{
 		if (root == null) {
 			return true;
