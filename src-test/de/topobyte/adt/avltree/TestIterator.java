@@ -13,7 +13,7 @@ public class TestIterator
 {
 	public static void main(String[] args)
 	{
-		int t = 10000; // number of insertions
+		int t = 3000; // number of insertions
 		int max = 10000; // maximum value for elements
 
 		System.out.println("performing " + t + " insertions");
@@ -40,6 +40,18 @@ public class TestIterator
 		
 		Collections.sort(list);
 		check(tree, list);
+		
+		// now remove all elements
+		while (list.size() > 0) {
+			// remove
+			int index = random.nextInt(list.size());
+			int value = list.get(index);
+			tree.removeElement(value);
+			list.remove(new Integer(value));
+
+			check(tree, list);
+		}
+
 
 		System.out.println("done");
 	}

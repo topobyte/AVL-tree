@@ -9,39 +9,35 @@ import java.util.NoSuchElementException;
 class TreeIterator<T extends Comparable<T>> implements Iterator<T>
 {
 
-	private boolean initialized = false;
-
 	private Tree<T> tree;
 
-	private TreePath<T> path;
+	private TreePath<T> last = null;
+	private TreePath<T> next = null;
 
 	public TreeIterator(Tree<T> tree)
 	{
 		this.tree = tree;
-	}
 
-	private void ensureInitialized()
-	{
-		if (initialized) {
-			return;
-		}
-		initialized = true;
-
-		path = tree.findMinPath();
+		last = null;
+		next = tree.findMinPath();
 	}
 
 	@Override
 	public boolean hasNext()
 	{
-		ensureInitialized();
-		return path.getLength() > 0;
+		if (next != null) {
+			return next.getLength() > 0;
+		}
+		return false;
 	}
 
 	@Override
 	public T next()
 	{
-		ensureInitialized();
-		TreePathNode<T> target = path.getTarget();
+		last = next;
+		next = tree.findSuccessor(last.clone());
+
+		TreePathNode<T> target = last.getTarget();
 
 		if (target == null) {
 			throw new NoSuchElementException();
@@ -49,14 +45,13 @@ class TreeIterator<T extends Comparable<T>> implements Iterator<T>
 
 		T element = target.getNode().getElement();
 
-		tree.findSuccessor(path);
-
 		return element;
 	}
 
 	@Override
 	public void remove()
 	{
+		// tree.remove(path);
 		throw new UnsupportedOperationException();
 	}
 

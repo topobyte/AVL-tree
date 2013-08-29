@@ -197,7 +197,7 @@ public class Tree<T extends Comparable<T>> implements Set<T>, SortedSet<T>,
 	/**
 	 * Remove the element stored at the specified path.
 	 */
-	private void remove(TreePath<T> path)
+	void remove(TreePath<T> path)
 	{
 		// The variable path will point to the node to remove
 
