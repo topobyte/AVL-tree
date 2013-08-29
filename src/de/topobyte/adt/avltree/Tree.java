@@ -866,8 +866,42 @@ public class Tree<T extends Comparable<T>> extends AbstractCollection<T>
 	@Override
 	public int indexOf(Object o)
 	{
-		// TODO: implement this
-		throw new UnsupportedOperationException();
+		// First locate the object in the tree
+		TreePath<T> path = findNodePath((T) o);
+		if (path == null) {
+			// If it is not contained, we return -1
+			return -1;
+		}
+		// Use this list to collect indices of all nodes on the path
+		List<Integer> indices = new ArrayList<Integer>(path.getLength());
+		// Traverse the path top to bottom
+		for (int i = 0; i < path.getLength(); i++) {
+			TreePathNode<T> node = path.get(i);
+			int size = 0;
+			if (node.getDirection() == null) {
+				// If this is the root node, the index is just the size of the
+				// left subtree.
+				Node<T> left = node.getNode().getLeft();
+				size = (left == null) ? 0 : left.getSize();
+			} else if (node.getDirection() == Direction.Left) {
+				// If this is a left child, we start with the parent's index,
+				// subtract the size of this node's subtree and add the size of
+				// this node's left subtree.
+				int parentIndex = indices.get(i - 1);
+				Node<T> left = node.getNode().getLeft();
+				size = parentIndex - node.getNode().getSize()
+						+ ((left == null) ? 0 : left.getSize());
+			} else { // node.getDirection() == Direction.Right
+				// If this is a right child, we start with the parent's index,
+				// add 1 and add the size of this node's left subtree.
+				int parentIndex = indices.get(i - 1);
+				Node<T> left = node.getNode().getLeft();
+				size = parentIndex + 1 + ((left == null) ? 0 : left.getSize());
+			}
+			// Store for subsequent calculations.
+			indices.add(size);
+		}
+		return indices.get(indices.size() - 1);
 	}
 
 	@Override
