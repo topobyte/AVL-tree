@@ -805,8 +805,15 @@ public class Tree<T extends Comparable<T>> implements Set<T>, SortedSet<T>,
 	@Override
 	public boolean retainAll(Collection<?> collection)
 	{
-		// TODO: implement this
-		throw new UnsupportedOperationException();
+		boolean modified = false;
+		Iterator<T> it = iterator();
+		while (it.hasNext()) {
+			if (!collection.contains(it.next())) {
+				it.remove();
+				modified = true;
+			}
+		}
+		return modified;
 	}
 
 	@Override
