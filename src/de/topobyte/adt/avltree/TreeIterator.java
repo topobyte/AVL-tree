@@ -51,8 +51,16 @@ class TreeIterator<T extends Comparable<T>> implements Iterator<T>
 	@Override
 	public void remove()
 	{
-		// tree.remove(path);
-		throw new UnsupportedOperationException();
+		if (last == null) {
+			throw new IllegalStateException();
+		}
+		TreePathNode<T> nextTarget = next.getTarget();
+		
+		tree.remove(last);
+		
+		if (nextTarget != null) {
+			next = tree.findNodePath(nextTarget.getNode().getElement());
+		}
 	}
 
 }

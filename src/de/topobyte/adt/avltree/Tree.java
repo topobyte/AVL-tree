@@ -348,7 +348,7 @@ public class Tree<T extends Comparable<T>> implements Set<T>, SortedSet<T>,
 	 * Find the path to the node that stores the specified element or null if
 	 * that element is not currently stored in the tree.
 	 */
-	private TreePath<T> findNodePath(T e)
+	TreePath<T> findNodePath(T e)
 	{
 		TreePath<T> path = new TreePath<T>();
 
