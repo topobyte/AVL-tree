@@ -3,6 +3,7 @@
  */
 package de.topobyte.adt.avltree;
 
+import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -13,8 +14,8 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.SortedSet;
 
-public class Tree<T extends Comparable<T>> implements Set<T>, SortedSet<T>,
-		List<T>
+public class Tree<T extends Comparable<T>> extends AbstractCollection<T>
+		implements Set<T>, SortedSet<T>, List<T>
 {
 
 	private Node<T> root = null;
@@ -747,40 +748,10 @@ public class Tree<T extends Comparable<T>> implements Set<T>, SortedSet<T>,
 		return insertElement(element);
 	}
 
-	public boolean addAll(Collection<? extends T> collection)
-	{
-		boolean modified = false;
-		Iterator<? extends T> it = collection.iterator();
-		while (it.hasNext()) {
-			if (add(it.next())) {
-				modified = true;
-			}
-		}
-		return modified;
-	}
-
 	@Override
 	public boolean contains(Object object)
 	{
 		return contains((T) object);
-	}
-
-	@Override
-	public boolean containsAll(Collection<?> collection)
-	{
-		Iterator<?> it = collection.iterator();
-		while (it.hasNext()) {
-			if (!contains(it.next())) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	@Override
-	public Iterator<T> iterator()
-	{
-		return new TreeIterator<T>(this);
 	}
 
 	@Override
@@ -790,44 +761,9 @@ public class Tree<T extends Comparable<T>> implements Set<T>, SortedSet<T>,
 	}
 
 	@Override
-	public boolean removeAll(Collection<?> collection)
+	public Iterator<T> iterator()
 	{
-		boolean modified = false;
-		Iterator<?> it = collection.iterator();
-		while (it.hasNext()) {
-			if (remove(it.next())) {
-				modified = true;
-			}
-		}
-		return modified;
-	}
-
-	@Override
-	public boolean retainAll(Collection<?> collection)
-	{
-		boolean modified = false;
-		Iterator<T> it = iterator();
-		while (it.hasNext()) {
-			if (!collection.contains(it.next())) {
-				it.remove();
-				modified = true;
-			}
-		}
-		return modified;
-	}
-
-	@Override
-	public Object[] toArray()
-	{
-		// TODO: implement this
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public <S> S[] toArray(S[] a)
-	{
-		// TODO: implement this
-		throw new UnsupportedOperationException();
+		return new TreeIterator<T>(this);
 	}
 
 	/*
@@ -888,16 +824,16 @@ public class Tree<T extends Comparable<T>> implements Set<T>, SortedSet<T>,
 	@Override
 	public void add(int index, T element)
 	{
-		// this method is in contradiction with the automatic sorting of the
-		// tree
+		// This method is in contradiction with the automatic sorting of the
+		// tree and can thus not be implemented.
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public boolean addAll(int index, Collection<? extends T> c)
 	{
-		// this method is in contradiction with the automatic sorting of the
-		// tree
+		// This method is in contradiction with the automatic sorting of the
+		// tree and can thus not be implemented.
 		throw new UnsupportedOperationException();
 	}
 
@@ -905,7 +841,7 @@ public class Tree<T extends Comparable<T>> implements Set<T>, SortedSet<T>,
 	public T set(int index, T element)
 	{
 		// this method is in contradiction with the automatic sorting of the
-		// tree
+		// tree and can thus not be implemented.
 		throw new UnsupportedOperationException();
 	}
 
