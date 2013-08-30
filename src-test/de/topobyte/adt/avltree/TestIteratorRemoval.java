@@ -16,6 +16,7 @@ public class TestIteratorRemoval
 		int t = 3000; // number of insertions
 		int max = 10000; // maximum value for elements
 
+		System.out.println("TEST: Iterator with removal");
 		System.out.println("performing " + t + " insertions");
 
 		Tree<Integer> tree = new Tree<Integer>();

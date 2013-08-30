@@ -18,6 +18,7 @@ public class TestInsertRemoveIndex
 
 		boolean print = false;
 
+		System.out.println("TEST: Insertion and removal by index");
 		System.out.println("performing " + t + " insertions / deletions");
 
 		Tree<Integer> tree = new Tree<Integer>();

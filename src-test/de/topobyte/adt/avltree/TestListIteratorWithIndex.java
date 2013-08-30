@@ -13,9 +13,10 @@ public class TestListIteratorWithIndex
 {
 	public static void main(String[] args)
 	{
-		int t = 3000; // number of insertions
+		int t = 2000; // number of insertions
 		int max = 10000; // maximum value for elements
 
+		System.out.println("TEST: List iterator with index");
 		System.out.println("performing " + t + " insertions");
 
 		Tree<Integer> tree = new Tree<Integer>();
@@ -99,8 +100,6 @@ public class TestListIteratorWithIndex
 				}
 			}
 		}
-
-		System.out.println("iterations: " + i);
 	}
 
 	private static void checkIndex(ListIterator<Integer> it1,

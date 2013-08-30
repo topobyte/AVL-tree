@@ -15,6 +15,7 @@ public class TestInsert
 		int t = 10000; // number of insertions
 		int max = 10000; // maximum value for elements
 
+		System.out.println("TEST: Insertion");
 		System.out.println("performing " + t + " insertions");
 
 		Tree<Integer> tree = new Tree<Integer>();

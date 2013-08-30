@@ -15,6 +15,7 @@ public class TestIndexOf
 		int t = 10000; // number of insertions
 		int max = 10000; // maximum value for elements
 
+		System.out.println("TEST: IndexOf");
 		System.out.println("performing " + t + " insertions");
 
 		Tree<Integer> tree = new Tree<Integer>();
