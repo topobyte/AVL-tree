@@ -907,8 +907,9 @@ public class Tree<T extends Comparable<T>> extends AbstractCollection<T>
 	@Override
 	public int lastIndexOf(Object o)
 	{
-		// TODO: implement this
-		throw new UnsupportedOperationException();
+		// Any element may only be contained once anyway, so we can safely use
+		// the indexOf() method here.
+		return indexOf(o);
 	}
 
 	@Override
