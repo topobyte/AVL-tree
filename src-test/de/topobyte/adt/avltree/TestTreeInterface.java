@@ -57,7 +57,7 @@ public class TestTreeInterface
 			System.exit(1);
 		}
 
-		TreePrinter printer = new TreePrinter(pad);
+		TreePrinter printer = new TreePrinter(System.out, pad);
 		printer.print(tree);
 	}
 }

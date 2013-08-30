@@ -3,6 +3,7 @@
  */
 package de.topobyte.adt.avltree;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,12 +11,15 @@ import de.topobyte.adt.tree.BinaryTreeNode;
 
 public class TreePrinter
 {
+	private PrintStream stream;
+
 	private int pad;
 	private String emptyNode;
 	private List<List<Integer>> rows = new ArrayList<List<Integer>>();
 
-	public TreePrinter(int pad)
+	public TreePrinter(PrintStream stream, int pad)
 	{
+		this.stream = stream;
 		this.pad = pad;
 		if (pad == 1) {
 			emptyNode = "*";
@@ -84,7 +88,7 @@ public class TreePrinter
 			}
 			print(link, "_");
 
-			System.out.println();
+			stream.println();
 		}
 	}
 
@@ -122,16 +126,16 @@ public class TreePrinter
 	private void print(int n, String c)
 	{
 		for (int i = 0; i < n; i++) {
-			System.out.print(c);
+			stream.print(c);
 		}
 	}
 
 	private void printElement(Integer value)
 	{
 		if (value == null) {
-			System.out.print(emptyNode);
+			stream.print(emptyNode);
 		} else {
-			System.out.print(String.format("%" + pad + "d", value));
+			stream.print(String.format("%" + pad + "d", value));
 		}
 	}
 
