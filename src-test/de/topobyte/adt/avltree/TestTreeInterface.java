@@ -72,15 +72,47 @@ public class TestTreeInterface
 		traverse(root, 0);
 
 		for (int level = 0; level < h; level++) {
+			// height of the current level
 			int height = h - level - 1;
-			printSpaces(spaceBefore(height));
+			// # chars to print before the first node of the level on the line
+			int before = spaceBefore(height);
+			// # chars between two subsequent nodes on this level
+			int inter = spaceInter(height);
+			// # chars between two subsequent nodes on the next level
+			int interNext = 0;
+			// # number of underscore to represent a link from this
+			// level to the next
+			int link = 0;
+			// # number of chars between two nodes on this level minus
+			// the underscore to depict the links to the next level
+			int space = 0;
+			if (height != 0) {
+				interNext = spaceInter(height - 1);
+				space = interNext + 4;
+				link = (inter - space) / 2;
+			}
+
+			int startingSpace = before - link;
+
+			print(startingSpace, " ");
+			print(link, "_");
 
 			List<Integer> row = rows.get(level);
 			for (int i = 0; i < row.size(); i++) {
 				Integer value = row.get(i);
 				printElement(value);
-				printSpaces(spaceInter(height));
+				if (i == row.size() - 1) {
+					break;
+				}
+				if (height == 0) {
+					print(inter, " ");
+				} else {
+					print(link, "_");
+					print(space, " ");
+					print(link, "_");
+				}
 			}
+			print(link, "_");
 
 			System.out.println();
 		}
@@ -117,10 +149,10 @@ public class TestTreeInterface
 		}
 	}
 
-	private void printSpaces(int n)
+	private void print(int n, String c)
 	{
 		for (int i = 0; i < n; i++) {
-			System.out.print(" ");
+			System.out.print(c);
 		}
 	}
 
