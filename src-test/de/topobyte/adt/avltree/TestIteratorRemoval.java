@@ -19,7 +19,7 @@ public class TestIteratorRemoval
 		System.out.println("TEST: Iterator with removal");
 		System.out.println("performing " + t + " insertions");
 
-		Tree<Integer> tree = new Tree<Integer>();
+		AvlTree<Integer> tree = new AvlTree<Integer>();
 		List<Integer> list = new ArrayList<Integer>();
 
 		Random random = new Random(2);
@@ -46,7 +46,7 @@ public class TestIteratorRemoval
 		System.out.println("done");
 	}
 
-	private static void checkIdentity(Tree<Integer> tree, List<Integer> list)
+	private static void checkIdentity(AvlTree<Integer> tree, List<Integer> list)
 	{
 		if (tree.size() != list.size()) {
 			System.out.println("size error");
@@ -60,7 +60,7 @@ public class TestIteratorRemoval
 		}
 	}
 
-	private static void checkIterator(Tree<Integer> tree, List<Integer> list)
+	private static void checkIterator(AvlTree<Integer> tree, List<Integer> list)
 	{
 		Random random = new Random(2);
 		Iterator<Integer> treeIter = tree.iterator();

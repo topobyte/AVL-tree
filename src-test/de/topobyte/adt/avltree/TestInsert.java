@@ -18,7 +18,7 @@ public class TestInsert
 		System.out.println("TEST: Insertion");
 		System.out.println("performing " + t + " insertions");
 
-		Tree<Integer> tree = new Tree<Integer>();
+		AvlTree<Integer> tree = new AvlTree<Integer>();
 		List<Integer> list = new ArrayList<Integer>();
 
 		Random random = new Random(2);
@@ -40,7 +40,7 @@ public class TestInsert
 		System.out.println("done");
 	}
 
-	private static void check(Tree<Integer> tree, List<Integer> list)
+	private static void check(AvlTree<Integer> tree, List<Integer> list)
 	{
 		if (tree.size() != list.size()) {
 			System.out.println("size error");

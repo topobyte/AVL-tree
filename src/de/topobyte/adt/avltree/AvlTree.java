@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.SortedSet;
 
-public class Tree<T extends Comparable<T>> extends AbstractCollection<T>
+public class AvlTree<T extends Comparable<T>> extends AbstractCollection<T>
 		implements Set<T>, SortedSet<T>, List<T>
 {
 

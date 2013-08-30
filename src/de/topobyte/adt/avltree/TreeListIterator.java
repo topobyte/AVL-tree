@@ -9,13 +9,13 @@ import java.util.NoSuchElementException;
 class TreeListIterator<T extends Comparable<T>> implements ListIterator<T>
 {
 
-	private Tree<T> tree;
+	private AvlTree<T> tree;
 
 	private TreePath<T> prev = null;
 	private TreePath<T> last = null;
 	private TreePath<T> next = null;
 
-	public TreeListIterator(Tree<T> tree)
+	public TreeListIterator(AvlTree<T> tree)
 	{
 		this.tree = tree;
 
@@ -24,7 +24,7 @@ class TreeListIterator<T extends Comparable<T>> implements ListIterator<T>
 		last = null;
 	}
 
-	public TreeListIterator(Tree<T> tree, int index)
+	public TreeListIterator(AvlTree<T> tree, int index)
 	{
 		if (index < 0 || index > tree.size()) {
 			throw new IndexOutOfBoundsException();

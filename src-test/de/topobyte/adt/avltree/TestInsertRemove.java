@@ -21,7 +21,7 @@ public class TestInsertRemove
 		System.out.println("TEST: Insertion and removal");
 		System.out.println("performing " + t + " insertions / deletions");
 
-		Tree<Integer> tree = new Tree<Integer>();
+		AvlTree<Integer> tree = new AvlTree<Integer>();
 		List<Integer> list = new ArrayList<Integer>();
 
 		Random random = new Random();
@@ -67,7 +67,7 @@ public class TestInsertRemove
 		System.out.println("done");
 	}
 
-	private static void check(Tree<Integer> tree, List<Integer> list,
+	private static void check(AvlTree<Integer> tree, List<Integer> list,
 			boolean print)
 	{
 		if (print) {
