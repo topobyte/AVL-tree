@@ -12,10 +12,15 @@ import de.topobyte.adt.tree.BinaryTreeNode;
 
 public class TestTreeInterface
 {
+
 	public static void main(String[] args)
 	{
 		int t = 16; // number of insertions
 		int max = 99; // maximum value for elements
+		int pad = 2; // number of chars to pad numbers to
+
+		// max = 999; pad = 3; // this also works
+		// max = 9999; pad = 4; // works, too
 
 		System.out.println("TEST: Tree interface");
 		System.out.println("performing " + t + " insertions");
@@ -38,10 +43,10 @@ public class TestTreeInterface
 			Collections.sort(list);
 
 		}
-		check(tree, list);
+		check(tree, list, pad);
 	}
 
-	private static void check(AvlTree<Integer> tree, List<Integer> list)
+	private static void check(AvlTree<Integer> tree, List<Integer> list, int pad)
 	{
 		if (tree.size() != list.size()) {
 			System.out.println("size error");
@@ -56,11 +61,29 @@ public class TestTreeInterface
 
 		BinaryTreeNode<Integer> root = tree.getBinaryRoot();
 
-		TestTreeInterface test = new TestTreeInterface();
+		TestTreeInterface test = new TestTreeInterface(pad);
 		test.print(root);
 	}
 
+	private int pad;
+	private String emptyNode;
 	private List<List<Integer>> rows = new ArrayList<List<Integer>>();
+
+	public TestTreeInterface(int pad)
+	{
+		this.pad = pad;
+		if (pad == 1) {
+			emptyNode = "*";
+		} else {
+			StringBuffer buffer = new StringBuffer();
+			buffer.append("[");
+			for (int i = 0; i < pad - 2; i++) {
+				buffer.append(" ");
+			}
+			buffer.append("]");
+			emptyNode = buffer.toString();
+		}
+	}
 
 	private void print(BinaryTreeNode<Integer> root)
 	{
@@ -88,7 +111,7 @@ public class TestTreeInterface
 			int space = 0;
 			if (height != 0) {
 				interNext = spaceInter(height - 1);
-				space = interNext + 4;
+				space = interNext + pad * 2;
 				link = (inter - space) / 2;
 			}
 
@@ -159,9 +182,9 @@ public class TestTreeInterface
 	private void printElement(Integer value)
 	{
 		if (value == null) {
-			System.out.print("[]");
+			System.out.print(emptyNode);
 		} else {
-			System.out.print(String.format("%2d", value));
+			System.out.print(String.format("%" + pad + "d", value));
 		}
 	}
 
@@ -176,9 +199,9 @@ public class TestTreeInterface
 	private int spaceInter(int height)
 	{
 		if (height == 0) {
-			return 2;
+			return pad;
 		}
-		return spaceInter(height - 1) * 2 + 2;
+		return spaceInter(height - 1) * 2 + pad;
 	}
 
 	private int spaceBefore(int height)
@@ -186,6 +209,6 @@ public class TestTreeInterface
 		if (height == 0) {
 			return 0;
 		}
-		return spaceBefore(height - 1) * 2 + 2;
+		return spaceBefore(height - 1) * 2 + pad;
 	}
 }
