@@ -419,7 +419,7 @@ public class Tree<T extends Comparable<T>> extends AbstractCollection<T>
 	 * Find the index'th element within the ordered sequence of elements
 	 * represented by this subtree.
 	 */
-	private TreePath<T> findIndexPath(int index)
+	TreePath<T> findIndexPath(int index)
 	{
 		int size = size();
 		if (index >= size) {
@@ -915,15 +915,13 @@ public class Tree<T extends Comparable<T>> extends AbstractCollection<T>
 	@Override
 	public ListIterator<T> listIterator()
 	{
-		// TODO: implement this
-		throw new UnsupportedOperationException();
+		return new TreeListIterator<T>(this);
 	}
 
 	@Override
 	public ListIterator<T> listIterator(int index)
 	{
-		// TODO: implement this
-		throw new UnsupportedOperationException();
+		return new TreeListIterator<T>(this, index);
 	}
 
 	@Override
