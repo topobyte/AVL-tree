@@ -43,7 +43,7 @@ public class Tree<T extends Comparable<T>> extends AbstractCollection<T>
 	 * 
 	 * @return <tt>true</tt> if the element was found and removed.
 	 */
-	public boolean removeElement(T e)
+	public boolean removeElement(Comparable<? super T> e)
 	{
 		TreePath<T> n = findNodePath(e);
 		if (n == null) {
@@ -103,7 +103,7 @@ public class Tree<T extends Comparable<T>> extends AbstractCollection<T>
 	 * @return <tt>true</tt> if the specified element is already present in the
 	 *         tree.
 	 */
-	public boolean contains(T e)
+	public boolean containsElement(Comparable<? super T> e)
 	{
 		return getElement(findNode(e)) != null;
 	}
@@ -329,7 +329,7 @@ public class Tree<T extends Comparable<T>> extends AbstractCollection<T>
 	 * Find the node that stores the specified element or null if that element
 	 * is not currently stored in the tree.
 	 */
-	private Node<T> findNode(T e)
+	private Node<T> findNode(Comparable<? super T> e)
 	{
 		Node<T> n = root;
 		while (n != null) {
@@ -349,7 +349,7 @@ public class Tree<T extends Comparable<T>> extends AbstractCollection<T>
 	 * Find the path to the node that stores the specified element or null if
 	 * that element is not currently stored in the tree.
 	 */
-	TreePath<T> findNodePath(T e)
+	TreePath<T> findNodePath(Comparable<? super T> e)
 	{
 		TreePath<T> path = new TreePath<T>();
 
@@ -751,13 +751,15 @@ public class Tree<T extends Comparable<T>> extends AbstractCollection<T>
 	@Override
 	public boolean contains(Object object)
 	{
-		return contains((T) object);
+		Comparable<? super T> c = (Comparable<? super T>) object;
+		return containsElement(c);
 	}
 
 	@Override
 	public boolean remove(Object object)
 	{
-		return remove((T) object);
+		Comparable<? super T> c = (Comparable<? super T>) object;
+		return removeElement(c);
 	}
 
 	@Override
@@ -867,7 +869,7 @@ public class Tree<T extends Comparable<T>> extends AbstractCollection<T>
 	public int indexOf(Object o)
 	{
 		// First locate the object in the tree
-		TreePath<T> path = findNodePath((T) o);
+		TreePath<T> path = findNodePath((Comparable<? super T>) o);
 		if (path == null) {
 			// If it is not contained, we return -1
 			return -1;
