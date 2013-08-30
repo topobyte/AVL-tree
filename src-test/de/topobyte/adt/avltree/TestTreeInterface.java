@@ -59,10 +59,8 @@ public class TestTreeInterface
 			System.exit(1);
 		}
 
-		BinaryTreeNode<Integer> root = tree.getBinaryRoot();
-
 		TestTreeInterface test = new TestTreeInterface(pad);
-		test.print(root);
+		test.print(tree);
 	}
 
 	private int pad;
@@ -85,9 +83,11 @@ public class TestTreeInterface
 		}
 	}
 
-	private void print(BinaryTreeNode<Integer> root)
+	private void print(AvlTree<Integer> tree)
 	{
-		int h = height(root);
+		BinaryTreeNode<Integer> root = tree.getBinaryRoot();
+		int h = tree.getHeight();
+		
 		for (int level = 0; level < h; level++) {
 			rows.add(new ArrayList<Integer>());
 		}
@@ -186,14 +186,6 @@ public class TestTreeInterface
 		} else {
 			System.out.print(String.format("%" + pad + "d", value));
 		}
-	}
-
-	private int height(BinaryTreeNode<Integer> node)
-	{
-		if (node == null) {
-			return 0;
-		}
-		return 1 + Math.max(height(node.getLeft()), height(node.getRight()));
 	}
 
 	private int spaceInter(int height)

@@ -82,6 +82,7 @@ public class AvlTree<T extends Comparable<T>> extends AbstractCollection<T>
 	 * 
 	 * @return the height of the tree.
 	 */
+	@Override
 	public int getHeight()
 	{
 		return height(root);
