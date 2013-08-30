@@ -14,8 +14,12 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.SortedSet;
 
+import de.topobyte.adt.tree.BinaryTree;
+import de.topobyte.adt.tree.BinaryTreeNode;
+import de.topobyte.adt.tree.TreeNode;
+
 public class AvlTree<T extends Comparable<T>> extends AbstractCollection<T>
-		implements Set<T>, SortedSet<T>, List<T>
+		implements Set<T>, SortedSet<T>, List<T>, BinaryTree<T>
 {
 
 	private Node<T> root = null;
@@ -936,6 +940,25 @@ public class AvlTree<T extends Comparable<T>> extends AbstractCollection<T>
 	{
 		// TODO: implement this
 		throw new UnsupportedOperationException();
+	}
+
+	/*
+	 * Tree / BinaryTree interface
+	 */
+
+	@Override
+	public TreeNode<T> getRoot()
+	{
+		return getBinaryRoot();
+	}
+
+	@Override
+	public BinaryTreeNode<T> getBinaryRoot()
+	{
+		if (root == null) {
+			return null;
+		}
+		return new TreeImplNode<T>(root);
 	}
 
 }
