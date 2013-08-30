@@ -6,7 +6,7 @@ package de.topobyte.adt.avltree;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
-class TreeListIterator<T extends Comparable<T>> implements ListIterator<T>
+class TreeListIterator<T> implements ListIterator<T>
 {
 
 	private AvlTree<T> tree;

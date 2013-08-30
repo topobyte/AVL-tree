@@ -18,11 +18,30 @@ import de.topobyte.adt.tree.BinaryTree;
 import de.topobyte.adt.tree.BinaryTreeNode;
 import de.topobyte.adt.tree.TreeNode;
 
-public class AvlTree<T extends Comparable<T>> extends AbstractCollection<T>
-		implements Set<T>, SortedSet<T>, List<T>, BinaryTree<T>
+public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
+		SortedSet<T>, List<T>, BinaryTree<T>
 {
 
 	private Node<T> root = null;
+
+	private Comparator<? super T> comparator = null;
+
+	public AvlTree()
+	{
+		comparator = new Comparator<T>() {
+
+			@Override
+			public int compare(T o1, T o2)
+			{
+				return ((Comparable<? super T>) o1).compareTo(o2);
+			}
+		};
+	}
+
+	public AvlTree(Comparator<? super T> comparator)
+	{
+		this.comparator = comparator;
+	}
 
 	/*
 	 * Public API
@@ -47,7 +66,7 @@ public class AvlTree<T extends Comparable<T>> extends AbstractCollection<T>
 	 * 
 	 * @return <tt>true</tt> if the element was found and removed.
 	 */
-	public boolean removeElement(Comparable<? super T> e)
+	public boolean removeElement(T e)
 	{
 		TreePath<T> n = findNodePath(e);
 		if (n == null) {
@@ -108,7 +127,7 @@ public class AvlTree<T extends Comparable<T>> extends AbstractCollection<T>
 	 * @return <tt>true</tt> if the specified element is already present in the
 	 *         tree.
 	 */
-	public boolean containsElement(Comparable<? super T> e)
+	public boolean containsElement(T e)
 	{
 		return getElement(findNode(e)) != null;
 	}
@@ -172,7 +191,7 @@ public class AvlTree<T extends Comparable<T>> extends AbstractCollection<T>
 		if (n == null) {
 			// Simplest case (empty subtree): just add as root
 			n = new Node<T>(e, null, null);
-		} else if (e.compareTo(n.getElement()) < 0) {
+		} else if (comparator.compare(e, n.getElement()) < 0) {
 			// The element is smaller than n, recurse into left subtree
 			Node<T> ins = insert(n.getLeft(), e);
 			if (ins == null) {
@@ -181,7 +200,7 @@ public class AvlTree<T extends Comparable<T>> extends AbstractCollection<T>
 				n.setLeft(ins);
 				n = ensureBalanced(n);
 			}
-		} else if (e.compareTo(n.getElement()) > 0) {
+		} else if (comparator.compare(e, n.getElement()) > 0) {
 			// The element is bigger than n, recurse into right subtree
 			Node<T> ins = insert(n.getRight(), e);
 			if (ins == null) {
@@ -334,13 +353,13 @@ public class AvlTree<T extends Comparable<T>> extends AbstractCollection<T>
 	 * Find the node that stores the specified element or null if that element
 	 * is not currently stored in the tree.
 	 */
-	private Node<T> findNode(Comparable<? super T> e)
+	private Node<T> findNode(T e)
 	{
 		Node<T> n = root;
 		while (n != null) {
-			if (e.compareTo(n.getElement()) < 0) {
+			if (comparator.compare(e, n.getElement()) < 0) {
 				n = n.getLeft();
-			} else if (e.compareTo(n.getElement()) > 0) {
+			} else if (comparator.compare(e, n.getElement()) > 0) {
 				n = n.getRight();
 			} else {
 				return n;
@@ -354,7 +373,7 @@ public class AvlTree<T extends Comparable<T>> extends AbstractCollection<T>
 	 * Find the path to the node that stores the specified element or null if
 	 * that element is not currently stored in the tree.
 	 */
-	TreePath<T> findNodePath(Comparable<? super T> e)
+	TreePath<T> findNodePath(T e)
 	{
 		TreePath<T> path = new TreePath<T>();
 
@@ -364,11 +383,11 @@ public class AvlTree<T extends Comparable<T>> extends AbstractCollection<T>
 
 		while (n != null) {
 			path.add(parent, dir, n);
-			if (e.compareTo(n.getElement()) < 0) {
+			if (comparator.compare(e, n.getElement()) < 0) {
 				parent = n;
 				dir = Direction.Left;
 				n = n.getLeft();
-			} else if (e.compareTo(n.getElement()) > 0) {
+			} else if (comparator.compare(e, n.getElement()) > 0) {
 				parent = n;
 				dir = Direction.Right;
 				n = n.getRight();
@@ -756,15 +775,15 @@ public class AvlTree<T extends Comparable<T>> extends AbstractCollection<T>
 	@Override
 	public boolean contains(Object object)
 	{
-		Comparable<? super T> c = (Comparable<? super T>) object;
-		return containsElement(c);
+		T e = (T) object;
+		return containsElement(e);
 	}
 
 	@Override
 	public boolean remove(Object object)
 	{
-		Comparable<? super T> c = (Comparable<? super T>) object;
-		return removeElement(c);
+		T e = (T) object;
+		return removeElement(e);
 	}
 
 	@Override
@@ -874,7 +893,7 @@ public class AvlTree<T extends Comparable<T>> extends AbstractCollection<T>
 	public int indexOf(Object o)
 	{
 		// First locate the object in the tree
-		TreePath<T> path = findNodePath((Comparable<? super T>) o);
+		TreePath<T> path = findNodePath((T) o);
 		if (path == null) {
 			// If it is not contained, we return -1
 			return -1;

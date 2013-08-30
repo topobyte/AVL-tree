@@ -6,14 +6,14 @@ package de.topobyte.adt.avltree;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-class TreeIterator<T extends Comparable<T>> implements Iterator<T>
+class TreeIterator<T> implements Iterator<T>
 {
 
 	private AvlTree<T> tree;
 
 	private TreePath<T> last = null;
 	private TreePath<T> next = null;
-	
+
 	private boolean removed = false;
 
 	public TreeIterator(AvlTree<T> tree)
@@ -38,7 +38,7 @@ class TreeIterator<T extends Comparable<T>> implements Iterator<T>
 	{
 		last = next;
 		next = tree.findSuccessor(last.clone());
-		
+
 		removed = false;
 
 		TreePathNode<T> target = last.getTarget();
@@ -59,9 +59,9 @@ class TreeIterator<T extends Comparable<T>> implements Iterator<T>
 			throw new IllegalStateException();
 		}
 		TreePathNode<T> nextTarget = next.getTarget();
-		
+
 		tree.remove(last);
-		
+
 		if (nextTarget != null) {
 			next = tree.findNodePath(nextTarget.getNode().getElement());
 		}
