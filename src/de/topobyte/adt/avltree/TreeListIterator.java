@@ -113,15 +113,19 @@ class TreeListIterator<T extends Comparable<T>> implements ListIterator<T>
 	@Override
 	public int nextIndex()
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		if (next == null || next.getLength() == 0) {
+			return tree.size();
+		}
+		return tree.indexOfPath(next);
 	}
 
 	@Override
 	public int previousIndex()
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		if (prev == null || prev.getLength() == 0) {
+			return -1;
+		}
+		return tree.indexOfPath(prev);
 	}
 
 	@Override

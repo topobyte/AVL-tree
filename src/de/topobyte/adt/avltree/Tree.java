@@ -872,6 +872,11 @@ public class Tree<T extends Comparable<T>> extends AbstractCollection<T>
 			// If it is not contained, we return -1
 			return -1;
 		}
+		return indexOfPath(path);
+	}
+
+	int indexOfPath(TreePath<T> path)
+	{
 		// Use this list to collect indices of all nodes on the path
 		List<Integer> indices = new ArrayList<Integer>(path.getLength());
 		// Traverse the path top to bottom

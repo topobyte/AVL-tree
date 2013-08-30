@@ -40,7 +40,7 @@ public class TestListIteratorWithIndex
 
 		Collections.sort(list);
 
-		for (int i = 0; i < list.size(); i++) {
+		for (int i = 0; i <= list.size(); i++) {
 			check(tree, list, i);
 		}
 
@@ -68,6 +68,7 @@ public class TestListIteratorWithIndex
 		int i = 0;
 		while (true) {
 			i++;
+			checkIndex(it1, it2);
 			int r = random.nextInt(3);
 			boolean b = r < 2;
 			if (b) {
@@ -100,6 +101,19 @@ public class TestListIteratorWithIndex
 		}
 
 		System.out.println("iterations: " + i);
+	}
+
+	private static void checkIndex(ListIterator<Integer> it1,
+			ListIterator<Integer> it2)
+	{
+		if (it1.nextIndex() != it2.nextIndex())  {
+			System.out.println("nextIndex() wrong");
+			System.exit(1);
+		}
+		if (it1.previousIndex() != it2.previousIndex()) {
+			System.out.println("previousIndex() wrong");
+			System.exit(1);
+		}
 	}
 
 }
