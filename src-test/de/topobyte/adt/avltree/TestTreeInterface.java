@@ -17,7 +17,8 @@ public class TestTreeInterface
 		int max = 99; // maximum value for elements
 		int pad = 2; // number of chars to pad numbers to
 
-		// max = 999; pad = 3; // this also works
+		// max = 9; pad = 1; // this also works
+		// max = 999; pad = 3; // or this
 		// max = 9999; pad = 4; // works, too
 
 		System.out.println("TEST: Tree interface");
@@ -28,10 +29,10 @@ public class TestTreeInterface
 
 		Random random = new Random(2);
 
-		for (int i = 0; i < t; i++) {
+		for (int i = 0; i < t && i < max + 1; i++) {
 			int n = 0;
 			while (true) {
-				n = random.nextInt(max);
+				n = random.nextInt(max + 1);
 				if (!list.contains(n)) {
 					break;
 				}
