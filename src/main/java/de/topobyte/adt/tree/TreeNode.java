@@ -9,7 +9,7 @@ public interface TreeNode<T>
 	public int getNumberOfChildren();
 
 	public TreeNode<T> getChild(int i);
-	
+
 	public T getElement();
 
 }

@@ -4,5 +4,8 @@
 package de.topobyte.adt.avltree;
 
 enum Direction {
-	Left, Right
+
+	Left,
+	Right
+
 }

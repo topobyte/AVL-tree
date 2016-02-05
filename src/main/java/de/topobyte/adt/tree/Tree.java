@@ -9,4 +9,5 @@ public interface Tree<T>
 	public TreeNode<T> getRoot();
 
 	public int getHeight();
+
 }
