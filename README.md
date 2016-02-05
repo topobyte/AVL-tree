@@ -14,19 +14,17 @@ This software is released under the terms of the **GNU Lesser General Public Lic
 
 # Building
 
-## Compile:
-
-`ant compile`
-
 ## Create JAR distribution files:
 
-`ant dist`
+`gradle build`
 
 ## Build documentation
 
-`ant doc`
+`gradle javadoc`
 
 # Testing
+
+TODO: this section is outdated
 
 `java -cp bin/main:bin/test/ de.topobyte.adt.avltree.TestInsert`
 
