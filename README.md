@@ -1,5 +1,14 @@
 # About
 
+This Java project contains some general purpose tree interfaces and implementations.
+
+## General tree abstraction
+
+There are some interfaces in the package `de.topobyte.adt.tree` that can be
+used in various tree related data structures.
+
+## AVL tree
+
 This **AVL tree** implementation aims to provide a **self-balancing tree**
 implementation that is useful in practice.
 To achieve this it should integrate well with the standard Java interfaces and classes.
