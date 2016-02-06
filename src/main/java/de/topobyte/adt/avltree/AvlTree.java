@@ -129,7 +129,7 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 	 */
 	public boolean containsElement(T e)
 	{
-		return getElement(findNode(e)) != null;
+		return getElement(findInternalNode(e)) != null;
 	}
 
 	/**
@@ -174,6 +174,15 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 			collectElements(list, root);
 		}
 		return list;
+	}
+
+	public TreeNode<T> findNode(T e)
+	{
+		Node<T> found = findInternalNode(e);
+		if (found == null) {
+			return null;
+		}
+		return new TreeImplNode<T>(found);
 	}
 
 	/*
@@ -353,7 +362,7 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 	 * Find the node that stores the specified element or null if that element
 	 * is not currently stored in the tree.
 	 */
-	private Node<T> findNode(T e)
+	private Node<T> findInternalNode(T e)
 	{
 		Node<T> n = root;
 		while (n != null) {
