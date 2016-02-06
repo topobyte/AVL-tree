@@ -3,9 +3,8 @@
  */
 package de.topobyte.adt.general;
 
-import de.topobyte.adt.tree.TreeNode;
 import de.topobyte.adt.tree.TreeUtil;
-import de.topobyte.adt.tree.Visitor;
+import de.topobyte.adt.tree.visitors.PrintVisitor;
 
 public class Test
 {
@@ -25,20 +24,8 @@ public class Test
 
 		System.out.println(tree.getHeight());
 
-		TreeUtil.traversePreorder(tree, new Visitor<TreeNode<String>>() {
-
-			@Override
-			public void visit(TreeNode<String> node, int depth)
-			{
-				StringBuilder buffer = new StringBuilder();
-				for (int i = 0; i < depth; i++) {
-					buffer.append("  ");
-				}
-				String element = node.getElement();
-				buffer.append(element == null ? "null" : element.toString());
-				System.out.println(buffer.toString());
-			}
-		});
+		PrintVisitor<String> printer = new PrintVisitor<>();
+		TreeUtil.traversePreorder(tree, printer);
 	}
 
 }
