@@ -6,7 +6,7 @@ package de.topobyte.adt.general;
 import de.topobyte.adt.avltree.AvlTree;
 import de.topobyte.adt.tree.TreeNode;
 
-class Node<T> implements TreeNode<T>, Comparable<Node<T>>
+public class Node<T> implements TreeNode<T>, Comparable<Node<T>>
 {
 
 	private SortedTree<T> tree;
