@@ -68,4 +68,19 @@ public class Node<T> implements TreeNode<T>, Comparable<Node<T>>
 		return 1 + max;
 	}
 
+	public boolean contains(T s)
+	{
+		return children.contains(s);
+	}
+
+	public Node<T> find(T s)
+	{
+		Node<T> needle = new Node<T>(tree, s);
+		TreeNode<Node<T>> found = children.findNode(needle);
+		if (found == null) {
+			return null;
+		}
+		return found.getElement();
+	}
+
 }
