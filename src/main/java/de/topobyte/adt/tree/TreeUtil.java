@@ -40,4 +40,22 @@ public class TreeUtil
 		visitor.visit(node, depth);
 	}
 
+	public static <T> void traverse(Tree<T> tree,
+			PrePostVisitor<TreeNode<T>> visitor)
+	{
+		TreeNode<T> root = tree.getRoot();
+		traverse(root, visitor, 0);
+	}
+
+	public static <T> void traverse(TreeNode<T> node,
+			PrePostVisitor<TreeNode<T>> visitor, int depth)
+	{
+		visitor.visitIn(node, depth);
+		for (int i = 0; i < node.getNumberOfChildren(); i++) {
+			TreeNode<T> child = node.getChild(i);
+			traverse(child, visitor, depth + 1);
+		}
+		visitor.visitOut(node, depth);
+	}
+
 }
