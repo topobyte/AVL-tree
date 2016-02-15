@@ -70,7 +70,8 @@ public class Node<T> implements TreeNode<T>, Comparable<Node<T>>
 
 	public boolean contains(T s)
 	{
-		return children.contains(s);
+		Node<T> needle = new Node<>(tree, s);
+		return children.contains(needle);
 	}
 
 	public Node<T> find(T s)
