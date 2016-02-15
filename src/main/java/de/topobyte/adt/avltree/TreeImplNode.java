@@ -52,7 +52,7 @@ public class TreeImplNode<T> implements BinaryTreeNode<T>
 		if (child == null) {
 			return null;
 		}
-		return new TreeImplNode<T>(child);
+		return new TreeImplNode<>(child);
 	}
 
 	@Override

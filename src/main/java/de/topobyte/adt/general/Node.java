@@ -45,7 +45,7 @@ public class Node<T> implements TreeNode<T>, Comparable<Node<T>>
 
 	public Node<T> add(T element)
 	{
-		Node<T> node = new Node<T>(tree, element);
+		Node<T> node = new Node<>(tree, element);
 		children.add(node);
 		return node;
 	}
@@ -76,7 +76,7 @@ public class Node<T> implements TreeNode<T>, Comparable<Node<T>>
 
 	public Node<T> find(T s)
 	{
-		Node<T> needle = new Node<T>(tree, s);
+		Node<T> needle = new Node<>(tree, s);
 		TreeNode<Node<T>> found = children.findNode(needle);
 		if (found == null) {
 			return null;

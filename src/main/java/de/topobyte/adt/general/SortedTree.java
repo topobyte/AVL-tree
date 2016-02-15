@@ -10,7 +10,7 @@ import de.topobyte.adt.tree.Tree;
 public class SortedTree<T> implements Tree<T>
 {
 
-	private Node<T> root = new Node<T>(this, null);
+	private Node<T> root = new Node<>(this, null);
 
 	Comparator<? super T> comparator = null;
 

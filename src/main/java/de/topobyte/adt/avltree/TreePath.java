@@ -9,11 +9,11 @@ import java.util.List;
 class TreePath<T>
 {
 
-	private List<TreePathNode<T>> path = new ArrayList<TreePathNode<T>>();
+	private List<TreePathNode<T>> path = new ArrayList<>();
 
 	public void add(Node<T> parent, Direction direction, Node<T> node)
 	{
-		path.add(new TreePathNode<T>(parent, direction, node));
+		path.add(new TreePathNode<>(parent, direction, node));
 	}
 
 	public int getLength()
@@ -44,9 +44,10 @@ class TreePath<T>
 		}
 	}
 
+	@Override
 	public TreePath<T> clone()
 	{
-		TreePath<T> clone = new TreePath<T>();
+		TreePath<T> clone = new TreePath<>();
 		for (TreePathNode<T> ref : path) {
 			clone.path.add(ref);
 		}

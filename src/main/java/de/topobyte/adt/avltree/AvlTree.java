@@ -384,7 +384,7 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 	 */
 	TreePath<T> findNodePath(T e)
 	{
-		TreePath<T> path = new TreePath<T>();
+		TreePath<T> path = new TreePath<>();
 
 		Node<T> parent = null;
 		Direction dir = null;
@@ -459,7 +459,7 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 			return null;
 		}
 
-		TreePath<T> path = new TreePath<T>();
+		TreePath<T> path = new TreePath<>();
 
 		Node<T> p = null;
 		Node<T> n = root;
@@ -563,7 +563,7 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 	 */
 	TreePath<T> findMinPath()
 	{
-		TreePath<T> path = new TreePath<T>();
+		TreePath<T> path = new TreePath<>();
 
 		Node<T> parent = null;
 		Direction dir = null;
@@ -798,7 +798,7 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 	@Override
 	public Iterator<T> iterator()
 	{
-		return new TreeIterator<T>(this);
+		return new TreeIterator<>(this);
 	}
 
 	/*
@@ -913,7 +913,7 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 	int indexOfPath(TreePath<T> path)
 	{
 		// Use this list to collect indices of all nodes on the path
-		List<Integer> indices = new ArrayList<Integer>(path.getLength());
+		List<Integer> indices = new ArrayList<>(path.getLength());
 		// Traverse the path top to bottom
 		for (int i = 0; i < path.getLength(); i++) {
 			TreePathNode<T> node = path.get(i);
@@ -955,13 +955,13 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 	@Override
 	public ListIterator<T> listIterator()
 	{
-		return new TreeListIterator<T>(this);
+		return new TreeListIterator<>(this);
 	}
 
 	@Override
 	public ListIterator<T> listIterator(int index)
 	{
-		return new TreeListIterator<T>(this, index);
+		return new TreeListIterator<>(this, index);
 	}
 
 	@Override
@@ -987,7 +987,7 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 		if (root == null) {
 			return null;
 		}
-		return new TreeImplNode<T>(root);
+		return new TreeImplNode<>(root);
 	}
 
 }
