@@ -11,15 +11,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
-import java.util.Set;
 import java.util.SortedSet;
 
 import de.topobyte.adt.tree.BinaryTree;
 import de.topobyte.adt.tree.BinaryTreeNode;
 import de.topobyte.adt.tree.TreeNode;
 
-public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
-		SortedSet<T>, List<T>, BinaryTree<T>
+public class AvlTree<T> extends AbstractCollection<T> implements BinaryTree<T>
 {
 
 	private Node<T> root = null;
@@ -805,13 +803,11 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 	 * SortedSet implementation
 	 */
 
-	@Override
 	public Comparator<? super T> comparator()
 	{
 		return null;
 	}
 
-	@Override
 	public T first()
 	{
 		T min = findMin();
@@ -821,7 +817,6 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 		return min;
 	}
 
-	@Override
 	public T last()
 	{
 		T max = findMax();
@@ -831,21 +826,18 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 		return max;
 	}
 
-	@Override
 	public SortedSet<T> headSet(T toElement)
 	{
 		// TODO: implement this
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public SortedSet<T> tailSet(T fromElement)
 	{
 		// TODO: implement this
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public SortedSet<T> subSet(T fromElement, T toElement)
 	{
 		// TODO: implement this
@@ -856,7 +848,6 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 	 * List implementation
 	 */
 
-	@Override
 	public void add(int index, T element)
 	{
 		// This method is in contradiction with the automatic sorting of the
@@ -864,7 +855,6 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public boolean addAll(int index, Collection<? extends T> c)
 	{
 		// This method is in contradiction with the automatic sorting of the
@@ -872,7 +862,6 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public T set(int index, T element)
 	{
 		// this method is in contradiction with the automatic sorting of the
@@ -880,13 +869,11 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public T get(int index)
 	{
 		return getElement(index);
 	}
 
-	@Override
 	public T remove(int index)
 	{
 		TreePath<T> n = findIndexPath(index);
@@ -898,7 +885,6 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 		return element;
 	}
 
-	@Override
 	public int indexOf(Object o)
 	{
 		// First locate the object in the tree
@@ -944,7 +930,6 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 		return indices.get(indices.size() - 1);
 	}
 
-	@Override
 	public int lastIndexOf(Object o)
 	{
 		// Any element may only be contained once anyway, so we can safely use
@@ -952,19 +937,16 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 		return indexOf(o);
 	}
 
-	@Override
 	public ListIterator<T> listIterator()
 	{
 		return new TreeListIterator<>(this);
 	}
 
-	@Override
 	public ListIterator<T> listIterator(int index)
 	{
 		return new TreeListIterator<>(this, index);
 	}
 
-	@Override
 	public List<T> subList(int fromIndex, int toIndex)
 	{
 		// TODO: implement this
@@ -988,6 +970,26 @@ public class AvlTree<T> extends AbstractCollection<T> implements Set<T>,
 			return null;
 		}
 		return new TreeImplNode<>(root);
+	}
+
+	/**
+	 * Get a list view on this tree.
+	 * 
+	 * @return a list view on the elements contained in the tree.
+	 */
+	public List<T> asList()
+	{
+		return new AvlTreeListAdapter<>(this);
+	}
+
+	/**
+	 * Get a sorted set view on this tree.
+	 * 
+	 * @return a sorted set view on the elements contained in the tree.
+	 */
+	public SortedSet<T> asSet()
+	{
+		return new AvlTreeSetAdapter<>(this);
 	}
 
 }
