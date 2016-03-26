@@ -6,16 +6,17 @@ package de.topobyte.adt.tree.visitors;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.topobyte.adt.tree.PrePostVisitor;
 import de.topobyte.adt.tree.TreeNode;
+import de.topobyte.adt.tree.TreeNodePrePostVisitor;
 
-public class PrePostPrintVisitor<T> implements PrePostVisitor<TreeNode<T>>
+public class TreeNodePrePostPrintVisitor<T> implements
+		TreeNodePrePostVisitor<T>
 {
 
 	private List<T> elements = new ArrayList<>();
 
 	@Override
-	public void visitIn(TreeNode<T> node, int depth)
+	public void visitIn(TreeNode<? extends T> node, int depth)
 	{
 		StringBuilder buffer = new StringBuilder();
 		for (int i = 0; i < depth; i++) {
@@ -30,7 +31,7 @@ public class PrePostPrintVisitor<T> implements PrePostVisitor<TreeNode<T>>
 	}
 
 	@Override
-	public void visitOut(TreeNode<T> element, int depth)
+	public void visitOut(TreeNode<? extends T> node, int depth)
 	{
 		if (depth > 0) {
 			elements.remove(elements.size() - 1);

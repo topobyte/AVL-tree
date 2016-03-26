@@ -5,7 +5,7 @@ package de.topobyte.adt.trees.general.sorted;
 
 import de.topobyte.adt.tree.TreeUtil;
 import de.topobyte.adt.tree.visitors.PrePostPrintVisitor;
-import de.topobyte.adt.tree.visitors.PrintVisitor;
+import de.topobyte.adt.tree.visitors.TreeNodePrintVisitor;
 import de.topobyte.adt.trees.general.sorted.Node;
 import de.topobyte.adt.trees.general.sorted.SortedTree;
 
@@ -27,7 +27,7 @@ public class Test
 
 		System.out.println(tree.getHeight());
 
-		PrintVisitor<String> printer = new PrintVisitor<>();
+		TreeNodePrintVisitor<String> printer = new TreeNodePrintVisitor<>();
 		TreeUtil.traversePreorder(tree, printer);
 
 		PrePostPrintVisitor<String> printer2 = new PrePostPrintVisitor<>();
