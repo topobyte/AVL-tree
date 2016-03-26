@@ -1,4 +1,4 @@
-package de.topobyte.adt.avltree;
+package de.topobyte.adt.trees.avltree;
 
 import java.util.Collection;
 import java.util.Comparator;

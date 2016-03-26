@@ -1,13 +1,14 @@
 /**
  * Copyright (C) 2013 Sebastian Kürten.
  */
-package de.topobyte.adt.avltree;
+package de.topobyte.adt.trees.avltree;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import de.topobyte.adt.tree.BinaryTreeNode;
+import de.topobyte.adt.trees.avltree.AvlTree;
 
 public class TreePrinter
 {

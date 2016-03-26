@@ -1,13 +1,15 @@
 /**
  * Copyright (C) 2013 Sebastian Kürten.
  */
-package de.topobyte.adt.avltree;
+package de.topobyte.adt.trees.avltree;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Random;
+
+import de.topobyte.adt.trees.avltree.AvlTree;
 
 public class TestListIteratorWithIndex
 {

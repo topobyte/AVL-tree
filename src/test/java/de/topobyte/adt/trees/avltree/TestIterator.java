@@ -1,21 +1,24 @@
 /**
  * Copyright (C) 2013 Sebastian Kürten.
  */
-package de.topobyte.adt.avltree;
+package de.topobyte.adt.trees.avltree;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-public class TestIndexOf
+import de.topobyte.adt.trees.avltree.AvlTree;
+
+public class TestIterator
 {
 	public static void main(String[] args)
 	{
-		int t = 10000; // number of insertions
+		int t = 3000; // number of insertions
 		int max = 10000; // maximum value for elements
 
-		System.out.println("TEST: IndexOf");
+		System.out.println("TEST: Iterator");
 		System.out.println("performing " + t + " insertions");
 
 		AvlTree<Integer> tree = new AvlTree<Integer>();
@@ -36,10 +39,22 @@ public class TestIndexOf
 
 		}
 
-		System.out.println("testing indexOf()");
-
+		System.out.println("testing iterator");
+		
 		Collections.sort(list);
 		check(tree, list);
+		
+		// now remove all elements
+		while (list.size() > 0) {
+			// remove
+			int index = random.nextInt(list.size());
+			int value = list.get(index);
+			tree.removeElement(value);
+			list.remove(new Integer(value));
+
+			check(tree, list);
+		}
+
 
 		System.out.println("done");
 	}
@@ -57,15 +72,21 @@ public class TestIndexOf
 			System.exit(1);
 		}
 
-		for (int i = 0; i < tree.size(); i++) {
-			int element = tree.get(i);
-			int index = tree.indexOf(element);
-			if (i != index) {
-				System.out.println("indexOf() returned wrong value");
-				System.out.println("expected: " + i);
-				System.out.println("returned: " + index);
-				System.exit(1);
+		int n = 0;
+
+		Iterator<Integer> iterator = tree.iterator();
+		while (iterator.hasNext()) {
+			int next = iterator.next();
+			if (list.get(n) != next) {
+				System.out.println("wrong value");
 			}
+			n++;
+		}
+
+		if (n != tree.size()) {
+			System.out
+					.println("iterator did not return the expected number of elements");
+			System.exit(1);
 		}
 	}
 

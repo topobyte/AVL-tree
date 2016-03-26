@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2016 Sebastian Kürten.
  */
-package de.topobyte.adt.general;
+package de.topobyte.adt.trees.general.sorted;
 
 import java.util.Comparator;
 

@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2013 Sebastian Kürten.
  */
-package de.topobyte.adt.avltree;
+package de.topobyte.adt.trees.avltree;
 
 import de.topobyte.adt.tree.BinaryTreeNode;
 import de.topobyte.adt.tree.TreeNode;

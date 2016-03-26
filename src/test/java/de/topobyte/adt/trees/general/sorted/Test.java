@@ -1,11 +1,13 @@
 /**
  * Copyright (C) 2016 Sebastian Kürten.
  */
-package de.topobyte.adt.general;
+package de.topobyte.adt.trees.general.sorted;
 
 import de.topobyte.adt.tree.TreeUtil;
 import de.topobyte.adt.tree.visitors.PrePostPrintVisitor;
 import de.topobyte.adt.tree.visitors.PrintVisitor;
+import de.topobyte.adt.trees.general.sorted.Node;
+import de.topobyte.adt.trees.general.sorted.SortedTree;
 
 public class Test
 {

@@ -1,14 +1,16 @@
 /**
  * Copyright (C) 2013 Sebastian Kürten.
  */
-package de.topobyte.adt.avltree;
+package de.topobyte.adt.trees.avltree;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class TestInsertRemoveIndex
+import de.topobyte.adt.trees.avltree.AvlTree;
+
+public class TestInsertRemove
 {
 	public static void main(String[] args)
 	{
@@ -18,7 +20,7 @@ public class TestInsertRemoveIndex
 
 		boolean print = false;
 
-		System.out.println("TEST: Insertion and removal by index");
+		System.out.println("TEST: Insertion and removal");
 		System.out.println("performing " + t + " insertions / deletions");
 
 		AvlTree<Integer> tree = new AvlTree<Integer>();
@@ -45,12 +47,9 @@ public class TestInsertRemoveIndex
 			} else {
 				// remove
 				int index = random.nextInt(list.size());
-				int r1 = tree.remove(index);
-				int r2 = list.remove(index);
-				if (r1 != r2) {
-					System.out.println("removed different elements");
-					System.exit(1);
-				}
+				int value = list.get(index);
+				tree.removeElement(value);
+				list.remove(new Integer(value));
 			}
 
 			check(tree, list, print);
@@ -85,8 +84,6 @@ public class TestInsertRemoveIndex
 		}
 		if (tree.size() != list.size()) {
 			System.out.println("size error");
-			System.out.println(tree.size());
-			System.out.println(list.size());
 			System.exit(1);
 		}
 		if (!TestHelper.identical(tree.elementsAsList(), list)) {

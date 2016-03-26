@@ -1,21 +1,23 @@
 /**
  * Copyright (C) 2013 Sebastian Kürten.
  */
-package de.topobyte.adt.avltree;
+package de.topobyte.adt.trees.avltree;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class TestInsert
+import de.topobyte.adt.trees.avltree.AvlTree;
+
+public class TestIndexOf
 {
 	public static void main(String[] args)
 	{
 		int t = 10000; // number of insertions
 		int max = 10000; // maximum value for elements
 
-		System.out.println("TEST: Insertion");
+		System.out.println("TEST: IndexOf");
 		System.out.println("performing " + t + " insertions");
 
 		AvlTree<Integer> tree = new AvlTree<Integer>();
@@ -33,10 +35,14 @@ public class TestInsert
 			}
 			tree.insertElement(n);
 			list.add(n);
-			Collections.sort(list);
 
-			check(tree, list);
 		}
+
+		System.out.println("testing indexOf()");
+
+		Collections.sort(list);
+		check(tree, list);
+
 		System.out.println("done");
 	}
 
@@ -51,6 +57,17 @@ public class TestInsert
 			System.out.println(TestHelper.print(tree.elementsAsList()));
 			System.out.println(TestHelper.print(list));
 			System.exit(1);
+		}
+
+		for (int i = 0; i < tree.size(); i++) {
+			int element = tree.get(i);
+			int index = tree.indexOf(element);
+			if (i != index) {
+				System.out.println("indexOf() returned wrong value");
+				System.out.println("expected: " + i);
+				System.out.println("returned: " + index);
+				System.exit(1);
+			}
 		}
 	}
 

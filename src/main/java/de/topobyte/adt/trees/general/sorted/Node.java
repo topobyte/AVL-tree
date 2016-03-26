@@ -1,10 +1,10 @@
 /**
  * Copyright (C) 2016 Sebastian Kürten.
  */
-package de.topobyte.adt.general;
+package de.topobyte.adt.trees.general.sorted;
 
-import de.topobyte.adt.avltree.AvlTree;
 import de.topobyte.adt.tree.TreeNode;
+import de.topobyte.adt.trees.avltree.AvlTree;
 
 public class Node<T> implements TreeNode<T>, Comparable<Node<T>>
 {
