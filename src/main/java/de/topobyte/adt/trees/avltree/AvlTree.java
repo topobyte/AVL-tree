@@ -167,7 +167,7 @@ public class AvlTree<T> extends AbstractCollection<T> implements BinaryTree<T>
 	 */
 	public List<T> elementsAsList()
 	{
-		List<T> list = new ArrayList<T>();
+		List<T> list = new ArrayList<>();
 		if (root != null) {
 			collectElements(list, root);
 		}
@@ -180,7 +180,7 @@ public class AvlTree<T> extends AbstractCollection<T> implements BinaryTree<T>
 		if (found == null) {
 			return null;
 		}
-		return new TreeImplNode<T>(found);
+		return new TreeImplNode<>(found);
 	}
 
 	/*
@@ -197,7 +197,7 @@ public class AvlTree<T> extends AbstractCollection<T> implements BinaryTree<T>
 	{
 		if (n == null) {
 			// Simplest case (empty subtree): just add as root
-			n = new Node<T>(e, null, null);
+			n = new Node<>(e, null, null);
 		} else if (comparator.compare(e, n.getElement()) < 0) {
 			// The element is smaller than n, recurse into left subtree
 			Node<T> ins = insert(n.getLeft(), e);

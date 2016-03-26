@@ -8,8 +8,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import de.topobyte.adt.trees.avltree.AvlTree;
-
 public class TestInsert
 {
 	public static void main(String[] args)
@@ -20,8 +18,8 @@ public class TestInsert
 		System.out.println("TEST: Insertion");
 		System.out.println("performing " + t + " insertions");
 
-		AvlTree<Integer> tree = new AvlTree<Integer>();
-		List<Integer> list = new ArrayList<Integer>();
+		AvlTree<Integer> tree = new AvlTree<>();
+		List<Integer> list = new ArrayList<>();
 
 		Random random = new Random(2);
 

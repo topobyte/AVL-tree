@@ -23,8 +23,8 @@ public class TestInsertRemoveIndex
 		System.out.println("TEST: Insertion and removal by index");
 		System.out.println("performing " + t + " insertions / deletions");
 
-		AvlTree<Integer> tree = new AvlTree<Integer>();
-		List<Integer> list = new ArrayList<Integer>();
+		AvlTree<Integer> tree = new AvlTree<>();
+		List<Integer> list = new ArrayList<>();
 
 		Random random = new Random();
 		random.setSeed(2);

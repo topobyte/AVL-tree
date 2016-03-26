@@ -26,8 +26,8 @@ public class TestTreeInterface
 		System.out.println("TEST: Tree interface");
 		System.out.println("performing " + t + " insertions");
 
-		AvlTree<Integer> tree = new AvlTree<Integer>();
-		List<Integer> list = new ArrayList<Integer>();
+		AvlTree<Integer> tree = new AvlTree<>();
+		List<Integer> list = new ArrayList<>();
 
 		Random random = new Random(2);
 

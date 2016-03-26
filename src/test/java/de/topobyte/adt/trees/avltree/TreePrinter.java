@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.topobyte.adt.tree.BinaryTreeNode;
-import de.topobyte.adt.trees.avltree.AvlTree;
 
 public class TreePrinter
 {
@@ -16,7 +15,7 @@ public class TreePrinter
 
 	private int pad;
 	private String emptyNode;
-	private List<List<Integer>> rows = new ArrayList<List<Integer>>();
+	private List<List<Integer>> rows = new ArrayList<>();
 
 	public TreePrinter(PrintStream stream, int pad)
 	{
