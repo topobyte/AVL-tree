@@ -3,6 +3,9 @@
  */
 package de.topobyte.adt.trees.general.prefix;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class DefaultPrefixNode<Label, Data> implements PrefixNode<Label, Data>
 {
 
@@ -52,6 +55,17 @@ public class DefaultPrefixNode<Label, Data> implements PrefixNode<Label, Data>
 	public String toString()
 	{
 		return label.toString();
+	}
+
+	public List<Label> getPathFromRoot()
+	{
+		LinkedList<Label> path = new LinkedList<>();
+		PrefixNode<Label, Data> iter = this;
+		while (iter != null) {
+			path.addFirst(iter.getLabel());
+			iter = iter.getParent();
+		}
+		return path;
 	}
 
 }

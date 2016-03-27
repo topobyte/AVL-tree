@@ -3,6 +3,8 @@
  */
 package de.topobyte.adt.trees.general.prefix;
 
+import java.util.List;
+
 public interface PrefixNode<Label, Data>
 {
 
@@ -15,5 +17,7 @@ public interface PrefixNode<Label, Data>
 	public Data getData();
 
 	public void setData(Data data);
+
+	public List<Label> getPathFromRoot();
 
 }
