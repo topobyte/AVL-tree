@@ -31,16 +31,16 @@ artifacts {
     archives sourcesJar
 }
 
-def POM_DESCRIPTION=new File('pom.description').text.trim()
+def pomInfo = new XmlSlurper().parse(new File('info.pom'));
 
 afterEvaluate { project ->
     uploadArchives {
         repositories {
             mavenDeployer {
                 pom.project {
-                    name POM_NAME
-                    description POM_DESCRIPTION
-                    url POM_URL
+                    name pomInfo.name
+                    description pomInfo.description
+                    url pomInfo.url
                 }
             }
         }
