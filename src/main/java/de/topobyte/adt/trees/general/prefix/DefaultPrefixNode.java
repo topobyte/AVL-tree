@@ -57,6 +57,7 @@ public class DefaultPrefixNode<Label, Data> implements PrefixNode<Label, Data>
 		return label.toString();
 	}
 
+	@Override
 	public List<Label> getPathFromRoot()
 	{
 		LinkedList<Label> path = new LinkedList<>();
