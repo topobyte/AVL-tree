@@ -10,6 +10,7 @@ import java.util.List;
 import de.topobyte.adt.tree.TreeNode;
 import de.topobyte.adt.tree.TreeNodeVisitor;
 import de.topobyte.adt.tree.TreeUtil;
+import de.topobyte.adt.tree.visitors.FancyPrintVisitor;
 import de.topobyte.adt.tree.visitors.PrePostPrintVisitor;
 import de.topobyte.adt.tree.visitors.PrintVisitor;
 import de.topobyte.adt.tree.visitors.TreeNodePrePostPrintVisitor;
@@ -51,6 +52,16 @@ public class TestTreeVisitors
 		TreeNodePrePostPrintVisitor<PackageNode<Boolean>> printer4 = new TreeNodePrePostPrintVisitor<>(
 				true);
 		TreeUtil.traverse(tree, printer4);
+
+		System.out.println("Traverse using FancyPrintVisitor (no indexes)");
+		FancyPrintVisitor<PackageNode<Boolean>> printer5 = new FancyPrintVisitor<>(
+				false);
+		TreeUtil.traverse(tree, printer5);
+
+		System.out.println("Traverse using FancyPrintVisitor (with indexes)");
+		FancyPrintVisitor<PackageNode<Boolean>> printer6 = new FancyPrintVisitor<>(
+				true);
+		TreeUtil.traverse(tree, printer6);
 
 		System.out.println("tree.print()");
 		tree.print();
