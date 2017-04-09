@@ -13,10 +13,18 @@ public class TreeNodePrePostPrintVisitor<T> implements
 		TreeNodePrePostVisitor<T>
 {
 
+	private boolean printIndex;
+
 	private List<T> elements = new ArrayList<>();
 
+	public TreeNodePrePostPrintVisitor(boolean printIndex)
+	{
+		this.printIndex = printIndex;
+	}
+
 	@Override
-	public void visitIn(TreeNode<? extends T> node, int depth)
+	public void visitIn(TreeNode<? extends T> node, int depth, int index,
+			int numSiblings)
 	{
 		StringBuilder buffer = new StringBuilder();
 		for (int i = 0; i < depth; i++) {
@@ -26,12 +34,22 @@ public class TreeNodePrePostPrintVisitor<T> implements
 		if (depth > 0) {
 			elements.add(element);
 		}
+
+		if (printIndex) {
+			buffer.append("[");
+			buffer.append(index);
+			buffer.append("/");
+			buffer.append(numSiblings);
+			buffer.append("] ");
+		}
+
 		buffer.append(element == null ? "null" : element.toString());
 		System.out.println(buffer.toString() + ": " + elements);
 	}
 
 	@Override
-	public void visitOut(TreeNode<? extends T> node, int depth)
+	public void visitOut(TreeNode<? extends T> node, int depth, int index,
+			int numSiblings)
 	{
 		if (depth > 0) {
 			elements.remove(elements.size() - 1);

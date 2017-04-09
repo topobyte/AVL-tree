@@ -34,19 +34,22 @@ public class TestTreeVisitors
 		}
 
 		System.out.println("Traverse using PrintVisitor");
-		PrintVisitor<PackageNode<Boolean>> printer1 = new PrintVisitor<>();
+		PrintVisitor<PackageNode<Boolean>> printer1 = new PrintVisitor<>(true);
 		TreeUtil.traversePreorder(tree, printer1);
 
 		System.out.println("Traverse using TreeNodePrintVisitor");
-		TreeNodeVisitor<PackageNode<Boolean>> printer2 = new TreeNodePrintVisitor<>();
+		TreeNodeVisitor<PackageNode<Boolean>> printer2 = new TreeNodePrintVisitor<>(
+				true);
 		TreeUtil.traversePreorder(tree, printer2);
 
 		System.out.println("Traverse using PrePostPrintVisitor");
-		PrePostPrintVisitor<PackageNode<Boolean>> printer3 = new PrePostPrintVisitor<>();
+		PrePostPrintVisitor<PackageNode<Boolean>> printer3 = new PrePostPrintVisitor<>(
+				true);
 		TreeUtil.traverse(tree, printer3);
 
 		System.out.println("Traverse using TreeNodePrePostPrintVisitor");
-		TreeNodePrePostPrintVisitor<PackageNode<Boolean>> printer4 = new TreeNodePrePostPrintVisitor<>();
+		TreeNodePrePostPrintVisitor<PackageNode<Boolean>> printer4 = new TreeNodePrePostPrintVisitor<>(
+				true);
 		TreeUtil.traverse(tree, printer4);
 
 		System.out.println("tree.print()");
@@ -55,7 +58,8 @@ public class TestTreeVisitors
 		PackageTreeVisitor<Boolean> visitor1 = new PackageTreeVisitor<Boolean>() {
 
 			@Override
-			public void visit(TreeNode<PackageNode<Boolean>> element, int depth)
+			public void visit(TreeNode<PackageNode<Boolean>> element,
+					int depth, int index, int numSiblings)
 			{
 				PackageNode<Boolean> node = element.getElement();
 				if (node == null) {
@@ -72,7 +76,8 @@ public class TestTreeVisitors
 		PackageTreeVisitor<Boolean> visitor2 = new PackageTreeVisitor<Boolean>() {
 
 			@Override
-			public void visit(TreeNode<PackageNode<Boolean>> element, int depth)
+			public void visit(TreeNode<PackageNode<Boolean>> element,
+					int depth, int index, int numSiblings)
 			{
 				PackageNode<Boolean> node = element.getElement();
 				if (node == null) {

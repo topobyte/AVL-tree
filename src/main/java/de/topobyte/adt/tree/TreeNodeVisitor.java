@@ -6,6 +6,7 @@ package de.topobyte.adt.tree;
 public interface TreeNodeVisitor<T>
 {
 
-	public void visit(TreeNode<? extends T> element, int depth);
+	public void visit(TreeNode<? extends T> element, int depth, int index,
+			int numSiblings);
 
 }

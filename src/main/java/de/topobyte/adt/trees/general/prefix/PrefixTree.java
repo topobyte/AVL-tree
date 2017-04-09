@@ -64,7 +64,7 @@ public abstract class PrefixTree<Label, Data, N extends PrefixNode<Label, Data>>
 
 	public void print()
 	{
-		TreeNodePrintVisitor<N> printer = new TreeNodePrintVisitor<>();
+		TreeNodePrintVisitor<N> printer = new TreeNodePrintVisitor<>(false);
 		TreeUtil.traversePreorder(this, printer);
 	}
 
