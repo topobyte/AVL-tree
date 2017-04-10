@@ -6,8 +6,6 @@ package de.topobyte.adt.trees.general.prefix;
 import java.util.Comparator;
 import java.util.List;
 
-import de.topobyte.adt.tree.TreeUtil;
-import de.topobyte.adt.tree.visitors.TreeNodePrintVisitor;
 import de.topobyte.adt.trees.general.sorted.Node;
 import de.topobyte.adt.trees.general.sorted.SortedTree;
 
@@ -60,12 +58,6 @@ public abstract class PrefixTree<Label, Data, N extends PrefixNode<Label, Data>>
 		}
 		PrefixNode<Label, Data> node = iter.getElement();
 		node.setData(data);
-	}
-
-	public void print()
-	{
-		TreeNodePrintVisitor<N> printer = new TreeNodePrintVisitor<>(false);
-		TreeUtil.traversePreorder(this, printer);
 	}
 
 	public void setData(List<Label> path, Data data)

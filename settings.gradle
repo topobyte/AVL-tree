@@ -1,1 +1,4 @@
-rootProject.name = pName
+include 'core', 'printing-stdio', 'tests'
+project(':core').name = 'adt-tree'
+project(':printing-stdio').name = 'adt-tree-printing-stdio'
+project(':tests').name = 'adt-tree-tests'

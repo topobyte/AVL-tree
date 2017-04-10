@@ -63,9 +63,6 @@ public class TestTreeVisitors
 				true);
 		TreeUtil.traverse(tree, printer6);
 
-		System.out.println("tree.print()");
-		tree.print();
-
 		PackageTreeVisitor<Boolean> visitor1 = new PackageTreeVisitor<Boolean>() {
 
 			@Override

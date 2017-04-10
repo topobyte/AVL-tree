@@ -1,0 +1,10 @@
+repositories {
+    maven {
+        url 'http://mvn.topobyte.de'
+    }
+}
+
+dependencies {
+    testCompile project(':adt-tree-printing-stdio')
+    testCompile 'junit:junit:4.11'
+}

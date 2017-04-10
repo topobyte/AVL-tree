@@ -1,0 +1,32 @@
+if (project.hasProperty("topobyte")) {
+    apply from: 'file:///' + System.getProperty("user.home") \
+        + '/.gradle/topobyte.gradle'
+}
+
+dependencies {
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives sourcesJar
+}
+
+def pomInfo = new XmlSlurper().parse(new File(projectDir, 'info.pom'));
+
+afterEvaluate { project ->
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                pom.project {
+                    name pomInfo.name
+                    description pomInfo.description
+                    url pomInfo.url
+                }
+            }
+        }
+    }
+}
