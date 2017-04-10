@@ -1,5 +1,6 @@
-include 'core', 'printing-core', 'printing-stdio', 'tests'
+include 'core', 'printing-core', 'printing-stdio', 'printing-slf4j', 'tests'
 project(':core').name = 'adt-tree'
 project(':printing-core').name = 'adt-tree-printing-core'
 project(':printing-stdio').name = 'adt-tree-printing-stdio'
+project(':printing-slf4j').name = 'adt-tree-printing-slf4j'
 project(':tests').name = 'adt-tree-tests'
