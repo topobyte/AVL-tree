@@ -8,12 +8,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import de.topobyte.adt.trees.avltree.AvlTree;
+import org.junit.Test;
 
 public class TestTreeInterface
 {
 
-	public static void main(String[] args)
+	@Test
+	public void test()
 	{
 		int t = 16; // number of insertions
 		int max = 99; // maximum value for elements
@@ -47,20 +48,13 @@ public class TestTreeInterface
 		check(tree, list, pad);
 	}
 
-	private static void check(AvlTree<Integer> tree, List<Integer> list, int pad)
+	private static void check(AvlTree<Integer> tree, List<Integer> list,
+			int pad)
 	{
-		if (tree.size() != list.size()) {
-			System.out.println("size error");
-			System.exit(1);
-		}
-		if (!TestHelper.identical(tree.elementsAsList(), list)) {
-			System.out.println("equality error");
-			System.out.println(TestHelper.print(tree.elementsAsList()));
-			System.out.println(TestHelper.print(list));
-			System.exit(1);
-		}
+		TestHelper.assertEqual(list, tree);
 
 		TreePrinter printer = new TreePrinter(System.out, pad);
 		printer.print(tree);
 	}
+
 }

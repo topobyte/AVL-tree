@@ -8,11 +8,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import de.topobyte.adt.trees.avltree.AvlTree;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class TestInsertRemoveIndex
 {
-	public static void main(String[] args)
+	@Test
+	public void test()
 	{
 		int t = 10000; // number of operations
 		int max = 10000; // maximum value for elements
@@ -50,8 +52,7 @@ public class TestInsertRemoveIndex
 				int r1 = tree.remove(index);
 				int r2 = list.remove(index);
 				if (r1 != r2) {
-					System.out.println("removed different elements");
-					System.exit(1);
+					Assert.fail("removed different elements");
 				}
 			}
 
@@ -77,26 +78,14 @@ public class TestInsertRemoveIndex
 	{
 		if (print) {
 			System.out.println("list: " + TestHelper.print(list));
-			System.out.println("tree: " + TestHelper.print(tree.elementsAsList()));
+			System.out.println(
+					"tree: " + TestHelper.print(tree.elementsAsList()));
 			System.out.println("tree: " + tree.toFoldedString());
 		}
 
-		if (!tree.checkBalanced()) {
-			System.out.println("not balanced");
-			System.exit(1);
-		}
-		if (tree.size() != list.size()) {
-			System.out.println("size error");
-			System.out.println(tree.size());
-			System.out.println(list.size());
-			System.exit(1);
-		}
-		if (!TestHelper.identical(tree.elementsAsList(), list)) {
-			System.out.println("equality error");
-			System.out.println(TestHelper.print(tree.elementsAsList()));
-			System.out.println(TestHelper.print(list));
-			System.exit(1);
-		}
+		Assert.assertTrue("balanced", tree.checkBalanced());
+
+		TestHelper.assertEqual(list, tree);
 	}
 
 }

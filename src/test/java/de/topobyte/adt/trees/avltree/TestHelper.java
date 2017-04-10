@@ -5,8 +5,11 @@ package de.topobyte.adt.trees.avltree;
 
 import java.util.List;
 
+import org.junit.Assert;
+
 public class TestHelper
 {
+
 	public static String print(List<Integer> list)
 	{
 		StringBuffer strb = new StringBuffer();
@@ -18,7 +21,7 @@ public class TestHelper
 		}
 		return strb.toString();
 	}
-	
+
 	public static boolean identical(List<Integer> list1, List<Integer> list2)
 	{
 		if (list1.size() != list2.size()) {
@@ -31,4 +34,17 @@ public class TestHelper
 		}
 		return true;
 	}
+
+	public static void assertEqual(List<Integer> list, AvlTree<Integer> tree)
+	{
+		Assert.assertEquals("size", list.size(), tree.size());
+		boolean equal = TestHelper.identical(tree.elementsAsList(), list);
+		if (!equal) {
+			System.out.println("equality error");
+			System.out.println(TestHelper.print(tree.elementsAsList()));
+			System.out.println(TestHelper.print(list));
+			Assert.fail("equality");
+		}
+	}
+
 }

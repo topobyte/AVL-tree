@@ -9,11 +9,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import de.topobyte.adt.trees.avltree.AvlTree;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class TestIterator
 {
-	public static void main(String[] args)
+
+	@Test
+	public void test()
 	{
 		int t = 3000; // number of insertions
 		int max = 10000; // maximum value for elements
@@ -40,10 +43,10 @@ public class TestIterator
 		}
 
 		System.out.println("testing iterator");
-		
+
 		Collections.sort(list);
 		check(tree, list);
-		
+
 		// now remove all elements
 		while (list.size() > 0) {
 			// remove
@@ -55,22 +58,12 @@ public class TestIterator
 			check(tree, list);
 		}
 
-
 		System.out.println("done");
 	}
 
 	private static void check(AvlTree<Integer> tree, List<Integer> list)
 	{
-		if (tree.size() != list.size()) {
-			System.out.println("size error");
-			System.exit(1);
-		}
-		if (!TestHelper.identical(tree.elementsAsList(), list)) {
-			System.out.println("equality error");
-			System.out.println(TestHelper.print(tree.elementsAsList()));
-			System.out.println(TestHelper.print(list));
-			System.exit(1);
-		}
+		TestHelper.assertEqual(list, tree);
 
 		int n = 0;
 
@@ -84,9 +77,8 @@ public class TestIterator
 		}
 
 		if (n != tree.size()) {
-			System.out
-					.println("iterator did not return the expected number of elements");
-			System.exit(1);
+			Assert.fail(
+					"iterator did not return the expected number of elements");
 		}
 	}
 

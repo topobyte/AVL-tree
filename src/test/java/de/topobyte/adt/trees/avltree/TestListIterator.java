@@ -9,11 +9,14 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Random;
 
-import de.topobyte.adt.trees.avltree.AvlTree;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class TestListIterator
 {
-	public static void main(String[] args)
+
+	@Test
+	public void test()
 	{
 		int t = 3000; // number of insertions
 		int max = 10000; // maximum value for elements
@@ -49,16 +52,7 @@ public class TestListIterator
 
 	private static void check(AvlTree<Integer> tree, List<Integer> list)
 	{
-		if (tree.size() != list.size()) {
-			System.out.println("size error");
-			System.exit(1);
-		}
-		if (!TestHelper.identical(tree.elementsAsList(), list)) {
-			System.out.println("equality error");
-			System.out.println(TestHelper.print(tree.elementsAsList()));
-			System.out.println(TestHelper.print(list));
-			System.exit(1);
-		}
+		TestHelper.assertEqual(list, tree);
 
 		Random random = new Random(2);
 
@@ -72,8 +66,7 @@ public class TestListIterator
 			boolean b = r < 2;
 			if (b) {
 				if (it1.hasNext() != it2.hasNext()) {
-					System.out.println("hasNext() is wrong");
-					System.exit(1);
+					Assert.fail("hasNext() is wrong");
 				}
 				if (it1.hasNext()) {
 					int n1 = it1.next();
@@ -86,8 +79,7 @@ public class TestListIterator
 				}
 			} else {
 				if (it1.hasPrevious() != it2.hasPrevious()) {
-					System.out.println("hasPrevious() is wrong");
-					System.exit(1);
+					Assert.fail("hasPrevious() is wrong");
 				}
 				if (it1.hasPrevious()) {
 					int p1 = it1.previous();

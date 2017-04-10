@@ -9,11 +9,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import de.topobyte.adt.trees.avltree.AvlTree;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class TestIteratorRemoval
 {
-	public static void main(String[] args)
+
+	@Test
+	public void test()
 	{
 		int t = 3000; // number of insertions
 		int max = 10000; // maximum value for elements
@@ -50,16 +53,7 @@ public class TestIteratorRemoval
 
 	private static void checkIdentity(AvlTree<Integer> tree, List<Integer> list)
 	{
-		if (tree.size() != list.size()) {
-			System.out.println("size error");
-			System.exit(1);
-		}
-		if (!TestHelper.identical(tree.elementsAsList(), list)) {
-			System.out.println("equality error");
-			System.out.println(TestHelper.print(tree.elementsAsList()));
-			System.out.println(TestHelper.print(list));
-			System.exit(1);
-		}
+		TestHelper.assertEqual(list, tree);
 	}
 
 	private static void checkIterator(AvlTree<Integer> tree, List<Integer> list)
@@ -70,10 +64,8 @@ public class TestIteratorRemoval
 		while (treeIter.hasNext()) {
 			Integer treeVal = treeIter.next();
 			Integer listVal = listIter.next();
-			if (!treeVal.equals(listVal)) {
-				System.out.println("iterator returned wrong value");
-				System.exit(1);
-			}
+			Assert.assertEquals("iterator returned wrong value", listVal,
+					treeVal);
 			if (random.nextBoolean()) {
 				treeIter.remove();
 				listIter.remove();

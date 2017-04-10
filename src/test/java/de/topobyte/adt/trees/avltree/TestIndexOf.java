@@ -8,9 +8,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 public class TestIndexOf
 {
-	public static void main(String[] args)
+
+	@Test
+	public void test()
 	{
 		int t = 10000; // number of insertions
 		int max = 10000; // maximum value for elements
@@ -33,7 +38,6 @@ public class TestIndexOf
 			}
 			tree.insertElement(n);
 			list.add(n);
-
 		}
 
 		System.out.println("testing indexOf()");
@@ -46,16 +50,7 @@ public class TestIndexOf
 
 	private static void check(AvlTree<Integer> tree, List<Integer> list)
 	{
-		if (tree.size() != list.size()) {
-			System.out.println("size error");
-			System.exit(1);
-		}
-		if (!TestHelper.identical(tree.elementsAsList(), list)) {
-			System.out.println("equality error");
-			System.out.println(TestHelper.print(tree.elementsAsList()));
-			System.out.println(TestHelper.print(list));
-			System.exit(1);
-		}
+		TestHelper.assertEqual(list, tree);
 
 		for (int i = 0; i < tree.size(); i++) {
 			int element = tree.get(i);
@@ -64,7 +59,7 @@ public class TestIndexOf
 				System.out.println("indexOf() returned wrong value");
 				System.out.println("expected: " + i);
 				System.out.println("returned: " + index);
-				System.exit(1);
+				Assert.fail("indexOf");
 			}
 		}
 	}

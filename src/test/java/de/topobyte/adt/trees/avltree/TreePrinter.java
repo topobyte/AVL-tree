@@ -11,6 +11,7 @@ import de.topobyte.adt.tree.BinaryTreeNode;
 
 public class TreePrinter
 {
+
 	private PrintStream stream;
 
 	private int pad;
@@ -154,4 +155,5 @@ public class TreePrinter
 		}
 		return spaceBefore(height - 1) * 2 + pad;
 	}
+
 }
