@@ -3,9 +3,7 @@
  */
 package de.topobyte.adt.tree.visitors;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import de.topobyte.adt.misc.Stack;
 import de.topobyte.adt.tree.PrePostVisitor;
 import de.topobyte.adt.tree.TreeNode;
 
@@ -36,10 +34,10 @@ public class FancyPrintVisitor<T> implements PrePostVisitor<TreeNode<T>>
 	// These two fields are stacks that represent the current tree path.
 
 	// This stores the the elements on the path.
-	private List<T> elements = new ArrayList<>();
+	private Stack<T> elements = new Stack<>();
 	// And for each node on the path whether it is the the last among its
 	// siblings.
-	private List<Boolean> last = new ArrayList<>();
+	private Stack<Boolean> last = new Stack<>();
 
 	public FancyPrintVisitor(boolean printIndex)
 	{
@@ -53,7 +51,7 @@ public class FancyPrintVisitor<T> implements PrePostVisitor<TreeNode<T>>
 
 		StringBuilder buffer = new StringBuilder();
 		for (int i = 0; i < depth - 1; i++) {
-			boolean innerIsLast = last.get(i);
+			boolean innerIsLast = last.asList().get(i);
 			if (innerIsLast) {
 				buffer.append("  ");
 			} else {
@@ -69,7 +67,7 @@ public class FancyPrintVisitor<T> implements PrePostVisitor<TreeNode<T>>
 		}
 		T element = node.getElement();
 		if (depth > 0) {
-			elements.add(element);
+			elements.push(element);
 		}
 
 		if (printIndex) {
@@ -81,11 +79,11 @@ public class FancyPrintVisitor<T> implements PrePostVisitor<TreeNode<T>>
 		}
 
 		if (depth > 0) {
-			last.add(isLast);
+			last.push(isLast);
 		}
 
 		buffer.append(element == null ? "null" : element.toString());
-		System.out.println(buffer.toString() + ": " + elements);
+		System.out.println(buffer.toString() + ": " + elements.asList());
 	}
 
 	@Override
@@ -93,8 +91,8 @@ public class FancyPrintVisitor<T> implements PrePostVisitor<TreeNode<T>>
 			int numSiblings)
 	{
 		if (depth > 0) {
-			elements.remove(elements.size() - 1);
-			last.remove(last.size() - 1);
+			elements.pop();
+			last.pop();
 		}
 	}
 

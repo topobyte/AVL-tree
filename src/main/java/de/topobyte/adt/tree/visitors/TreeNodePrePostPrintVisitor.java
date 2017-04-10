@@ -3,19 +3,16 @@
  */
 package de.topobyte.adt.tree.visitors;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import de.topobyte.adt.misc.Stack;
 import de.topobyte.adt.tree.TreeNode;
 import de.topobyte.adt.tree.TreeNodePrePostVisitor;
 
-public class TreeNodePrePostPrintVisitor<T> implements
-		TreeNodePrePostVisitor<T>
+public class TreeNodePrePostPrintVisitor<T> implements TreeNodePrePostVisitor<T>
 {
 
 	private boolean printIndex;
 
-	private List<T> elements = new ArrayList<>();
+	private Stack<T> elements = new Stack<>();
 
 	public TreeNodePrePostPrintVisitor(boolean printIndex)
 	{
@@ -32,7 +29,7 @@ public class TreeNodePrePostPrintVisitor<T> implements
 		}
 		T element = node.getElement();
 		if (depth > 0) {
-			elements.add(element);
+			elements.push(element);
 		}
 
 		if (printIndex) {
@@ -44,7 +41,7 @@ public class TreeNodePrePostPrintVisitor<T> implements
 		}
 
 		buffer.append(element == null ? "null" : element.toString());
-		System.out.println(buffer.toString() + ": " + elements);
+		System.out.println(buffer.toString() + ": " + elements.asList());
 	}
 
 	@Override
@@ -52,7 +49,7 @@ public class TreeNodePrePostPrintVisitor<T> implements
 			int numSiblings)
 	{
 		if (depth > 0) {
-			elements.remove(elements.size() - 1);
+			elements.pop();
 		}
 	}
 

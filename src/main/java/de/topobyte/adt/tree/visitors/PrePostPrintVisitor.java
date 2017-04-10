@@ -3,9 +3,7 @@
  */
 package de.topobyte.adt.tree.visitors;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import de.topobyte.adt.misc.Stack;
 import de.topobyte.adt.tree.PrePostVisitor;
 import de.topobyte.adt.tree.TreeNode;
 
@@ -14,7 +12,7 @@ public class PrePostPrintVisitor<T> implements PrePostVisitor<TreeNode<T>>
 
 	private boolean printIndex;
 
-	private List<T> elements = new ArrayList<>();
+	private Stack<T> elements = new Stack<>();
 
 	public PrePostPrintVisitor(boolean printIndex)
 	{
@@ -30,7 +28,7 @@ public class PrePostPrintVisitor<T> implements PrePostVisitor<TreeNode<T>>
 		}
 		T element = node.getElement();
 		if (depth > 0) {
-			elements.add(element);
+			elements.push(element);
 		}
 
 		if (printIndex) {
@@ -42,7 +40,7 @@ public class PrePostPrintVisitor<T> implements PrePostVisitor<TreeNode<T>>
 		}
 
 		buffer.append(element == null ? "null" : element.toString());
-		System.out.println(buffer.toString() + ": " + elements);
+		System.out.println(buffer.toString() + ": " + elements.asList());
 	}
 
 	@Override
@@ -50,7 +48,7 @@ public class PrePostPrintVisitor<T> implements PrePostVisitor<TreeNode<T>>
 			int numSiblings)
 	{
 		if (depth > 0) {
-			elements.remove(elements.size() - 1);
+			elements.pop();
 		}
 	}
 
