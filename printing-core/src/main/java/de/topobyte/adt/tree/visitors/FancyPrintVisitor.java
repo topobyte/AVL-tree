@@ -26,7 +26,8 @@ import de.topobyte.adt.tree.TreeNode;
  * 
  * @author Sebastian Kuerten
  */
-public class FancyPrintVisitor<T> implements PrePostVisitor<TreeNode<T>>
+public abstract class FancyPrintVisitor<T>
+		implements PrePostVisitor<TreeNode<T>>
 {
 
 	private boolean printIndex;
@@ -43,6 +44,8 @@ public class FancyPrintVisitor<T> implements PrePostVisitor<TreeNode<T>>
 	{
 		this.printIndex = printIndex;
 	}
+
+	protected abstract void println(String line);
 
 	@Override
 	public void visitIn(TreeNode<T> node, int depth, int index, int numSiblings)
@@ -83,7 +86,7 @@ public class FancyPrintVisitor<T> implements PrePostVisitor<TreeNode<T>>
 		}
 
 		buffer.append(element == null ? "null" : element.toString());
-		System.out.println(buffer.toString() + ": " + elements.asList());
+		println(buffer.toString() + ": " + elements.asList());
 	}
 
 	@Override

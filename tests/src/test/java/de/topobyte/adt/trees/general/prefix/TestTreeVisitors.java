@@ -10,11 +10,14 @@ import java.util.List;
 import de.topobyte.adt.tree.TreeNode;
 import de.topobyte.adt.tree.TreeNodeVisitor;
 import de.topobyte.adt.tree.TreeUtil;
-import de.topobyte.adt.tree.visitors.FancyPrintVisitor;
 import de.topobyte.adt.tree.visitors.PrePostPrintVisitor;
 import de.topobyte.adt.tree.visitors.PrintVisitor;
+import de.topobyte.adt.tree.visitors.StdFancyPrintVisitor;
+import de.topobyte.adt.tree.visitors.StdPrePostPrintVisitor;
+import de.topobyte.adt.tree.visitors.StdPrintVisitor;
+import de.topobyte.adt.tree.visitors.StdTreeNodePrePostPrintVisitor;
+import de.topobyte.adt.tree.visitors.StdTreeNodePrintVisitor;
 import de.topobyte.adt.tree.visitors.TreeNodePrePostPrintVisitor;
-import de.topobyte.adt.tree.visitors.TreeNodePrintVisitor;
 
 public class TestTreeVisitors
 {
@@ -35,31 +38,32 @@ public class TestTreeVisitors
 		}
 
 		System.out.println("Traverse using PrintVisitor");
-		PrintVisitor<PackageNode<Boolean>> printer1 = new PrintVisitor<>(true);
+		PrintVisitor<PackageNode<Boolean>> printer1 = new StdPrintVisitor<>(
+				true);
 		TreeUtil.traversePreorder(tree, printer1);
 
 		System.out.println("Traverse using TreeNodePrintVisitor");
-		TreeNodeVisitor<PackageNode<Boolean>> printer2 = new TreeNodePrintVisitor<>(
+		TreeNodeVisitor<PackageNode<Boolean>> printer2 = new StdTreeNodePrintVisitor<>(
 				true);
 		TreeUtil.traversePreorder(tree, printer2);
 
 		System.out.println("Traverse using PrePostPrintVisitor");
-		PrePostPrintVisitor<PackageNode<Boolean>> printer3 = new PrePostPrintVisitor<>(
+		PrePostPrintVisitor<PackageNode<Boolean>> printer3 = new StdPrePostPrintVisitor<>(
 				true);
 		TreeUtil.traverse(tree, printer3);
 
 		System.out.println("Traverse using TreeNodePrePostPrintVisitor");
-		TreeNodePrePostPrintVisitor<PackageNode<Boolean>> printer4 = new TreeNodePrePostPrintVisitor<>(
+		TreeNodePrePostPrintVisitor<PackageNode<Boolean>> printer4 = new StdTreeNodePrePostPrintVisitor<>(
 				true);
 		TreeUtil.traverse(tree, printer4);
 
 		System.out.println("Traverse using FancyPrintVisitor (no indexes)");
-		FancyPrintVisitor<PackageNode<Boolean>> printer5 = new FancyPrintVisitor<>(
+		StdFancyPrintVisitor<PackageNode<Boolean>> printer5 = new StdFancyPrintVisitor<>(
 				false);
 		TreeUtil.traverse(tree, printer5);
 
 		System.out.println("Traverse using FancyPrintVisitor (with indexes)");
-		FancyPrintVisitor<PackageNode<Boolean>> printer6 = new FancyPrintVisitor<>(
+		StdFancyPrintVisitor<PackageNode<Boolean>> printer6 = new StdFancyPrintVisitor<>(
 				true);
 		TreeUtil.traverse(tree, printer6);
 

@@ -10,7 +10,9 @@ repositories {
 }
 
 dependencies {
-    compile project(':adt-tree-printing-core')
+    compile project(':adt-tree')
+
+    compile 'de.topobyte:adt-misc:0.0.2'
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {

@@ -7,7 +7,8 @@ import de.topobyte.adt.misc.Stack;
 import de.topobyte.adt.tree.TreeNode;
 import de.topobyte.adt.tree.TreeNodePrePostVisitor;
 
-public class TreeNodePrePostPrintVisitor<T> implements TreeNodePrePostVisitor<T>
+public abstract class TreeNodePrePostPrintVisitor<T>
+		implements TreeNodePrePostVisitor<T>
 {
 
 	private boolean printIndex;
@@ -18,6 +19,8 @@ public class TreeNodePrePostPrintVisitor<T> implements TreeNodePrePostVisitor<T>
 	{
 		this.printIndex = printIndex;
 	}
+
+	protected abstract void println(String line);
 
 	@Override
 	public void visitIn(TreeNode<? extends T> node, int depth, int index,
@@ -41,7 +44,7 @@ public class TreeNodePrePostPrintVisitor<T> implements TreeNodePrePostVisitor<T>
 		}
 
 		buffer.append(element == null ? "null" : element.toString());
-		System.out.println(buffer.toString() + ": " + elements.asList());
+		println(buffer.toString() + ": " + elements.asList());
 	}
 
 	@Override
