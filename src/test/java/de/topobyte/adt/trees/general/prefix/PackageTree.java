@@ -5,8 +5,8 @@ package de.topobyte.adt.trees.general.prefix;
 
 import java.util.Comparator;
 
-public class PackageTree<Data> extends
-		PrefixTree<String, Data, PackageNode<Data>>
+public class PackageTree<Data>
+		extends PrefixTree<String, Data, PackageNode<Data>>
 {
 
 	public PackageTree()

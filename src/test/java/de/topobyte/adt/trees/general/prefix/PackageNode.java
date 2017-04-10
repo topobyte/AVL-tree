@@ -3,7 +3,6 @@
  */
 package de.topobyte.adt.trees.general.prefix;
 
-
 public class PackageNode<Data> extends DefaultPrefixNode<String, Data>
 {
 

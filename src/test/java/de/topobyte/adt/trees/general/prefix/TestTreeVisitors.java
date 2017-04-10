@@ -69,8 +69,8 @@ public class TestTreeVisitors
 		PackageTreeVisitor<Boolean> visitor1 = new PackageTreeVisitor<Boolean>() {
 
 			@Override
-			public void visit(TreeNode<PackageNode<Boolean>> element,
-					int depth, int index, int numSiblings)
+			public void visit(TreeNode<PackageNode<Boolean>> element, int depth,
+					int index, int numSiblings)
 			{
 				PackageNode<Boolean> node = element.getElement();
 				if (node == null) {
@@ -87,8 +87,8 @@ public class TestTreeVisitors
 		PackageTreeVisitor<Boolean> visitor2 = new PackageTreeVisitor<Boolean>() {
 
 			@Override
-			public void visit(TreeNode<PackageNode<Boolean>> element,
-					int depth, int index, int numSiblings)
+			public void visit(TreeNode<PackageNode<Boolean>> element, int depth,
+					int index, int numSiblings)
 			{
 				PackageNode<Boolean> node = element.getElement();
 				if (node == null) {
