@@ -6,5 +6,7 @@ repositories {
 
 dependencies {
     testCompile project(':adt-tree-printing-stdio')
+    testCompile project(':adt-tree-printing-slf4j')
+    testCompile 'org.slf4j:slf4j-simple:1.6.1'
     testCompile 'junit:junit:4.11'
 }
