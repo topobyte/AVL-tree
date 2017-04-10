@@ -5,9 +5,9 @@ package de.topobyte.adt.trees.general.sorted;
 
 import de.topobyte.adt.tree.TreeUtil;
 import de.topobyte.adt.tree.visitors.PrePostPrintVisitor;
-import de.topobyte.adt.tree.visitors.StdPrePostPrintVisitor;
-import de.topobyte.adt.tree.visitors.StdTreeNodePrintVisitor;
 import de.topobyte.adt.tree.visitors.TreeNodePrintVisitor;
+import de.topobyte.adt.tree.visitors.stdio.StdPrePostPrintVisitor;
+import de.topobyte.adt.tree.visitors.stdio.StdTreeNodePrintVisitor;
 
 public class Test
 {

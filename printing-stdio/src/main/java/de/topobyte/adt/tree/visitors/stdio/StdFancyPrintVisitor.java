@@ -1,7 +1,9 @@
 /**
  * Copyright (C) 2017 Sebastian Kürten.
  */
-package de.topobyte.adt.tree.visitors;
+package de.topobyte.adt.tree.visitors.stdio;
+
+import de.topobyte.adt.tree.visitors.FancyPrintVisitor;
 
 public class StdFancyPrintVisitor<T> extends FancyPrintVisitor<T>
 {

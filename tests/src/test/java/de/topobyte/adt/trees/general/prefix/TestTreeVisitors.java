@@ -12,12 +12,12 @@ import de.topobyte.adt.tree.TreeNodeVisitor;
 import de.topobyte.adt.tree.TreeUtil;
 import de.topobyte.adt.tree.visitors.PrePostPrintVisitor;
 import de.topobyte.adt.tree.visitors.PrintVisitor;
-import de.topobyte.adt.tree.visitors.StdFancyPrintVisitor;
-import de.topobyte.adt.tree.visitors.StdPrePostPrintVisitor;
-import de.topobyte.adt.tree.visitors.StdPrintVisitor;
-import de.topobyte.adt.tree.visitors.StdTreeNodePrePostPrintVisitor;
-import de.topobyte.adt.tree.visitors.StdTreeNodePrintVisitor;
 import de.topobyte.adt.tree.visitors.TreeNodePrePostPrintVisitor;
+import de.topobyte.adt.tree.visitors.stdio.StdFancyPrintVisitor;
+import de.topobyte.adt.tree.visitors.stdio.StdPrePostPrintVisitor;
+import de.topobyte.adt.tree.visitors.stdio.StdPrintVisitor;
+import de.topobyte.adt.tree.visitors.stdio.StdTreeNodePrePostPrintVisitor;
+import de.topobyte.adt.tree.visitors.stdio.StdTreeNodePrintVisitor;
 
 public class TestTreeVisitors
 {
