@@ -20,14 +20,14 @@ public class TestSpecialVisitors
 		PackageTreeVisitor<Boolean> visitor1 = new PackageTreeVisitor<Boolean>() {
 
 			@Override
-			public void visit(TreeNode<PackageNode<Boolean>> element, int depth,
-					int index, int numSiblings)
+			public void visit(TreeNode<? extends PackageNode<Boolean>> node,
+					int depth, int index, int numSiblings)
 			{
-				PackageNode<Boolean> node = element.getElement();
-				if (node == null) {
+				PackageNode<Boolean> element = node.getElement();
+				if (element == null) {
 					System.out.println("*root*");
 				} else {
-					System.out.println(node.toPackage());
+					System.out.println(element.toPackage());
 				}
 			}
 		};
@@ -38,18 +38,19 @@ public class TestSpecialVisitors
 		PackageTreeVisitor<Boolean> visitor2 = new PackageTreeVisitor<Boolean>() {
 
 			@Override
-			public void visit(TreeNode<PackageNode<Boolean>> element, int depth,
-					int index, int numSiblings)
+			public void visit(TreeNode<? extends PackageNode<Boolean>> node,
+					int depth, int index, int numSiblings)
 			{
-				PackageNode<Boolean> node = element.getElement();
-				if (node == null) {
+				PackageNode<Boolean> element = node.getElement();
+				if (element == null) {
 					System.out.println("*root*");
 				} else {
-					System.out.println(node.toPackage());
-					List<String> subs = subPackageNames(element);
+					System.out.println(element.toPackage());
+					List<String> subs = subPackageNames(node);
 					System.out.println("   -> " + subs);
 				}
 			}
+
 		};
 
 		System.out.println("Print packages with subpackages");
@@ -57,11 +58,11 @@ public class TestSpecialVisitors
 	}
 
 	public static <A> List<String> subPackageNames(
-			TreeNode<PackageNode<A>> packageNode)
+			TreeNode<? extends PackageNode<A>> packageNode)
 	{
 		List<String> names = new ArrayList<>(packageNode.getNumberOfChildren());
 		for (int i = 0; i < packageNode.getNumberOfChildren(); i++) {
-			TreeNode<PackageNode<A>> child = packageNode.getChild(i);
+			TreeNode<? extends PackageNode<A>> child = packageNode.getChild(i);
 			names.add(child.getElement().getLabel());
 		}
 		Collections.sort(names);

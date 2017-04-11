@@ -3,10 +3,9 @@
  */
 package de.topobyte.adt.tree.visitors;
 
-import de.topobyte.adt.tree.TreeNode;
 import de.topobyte.adt.tree.Visitor;
 
-public abstract class PrintVisitor<T> implements Visitor<TreeNode<T>>
+public abstract class PrintVisitor<T> implements Visitor<T>
 {
 
 	private boolean printIndex;
@@ -19,7 +18,7 @@ public abstract class PrintVisitor<T> implements Visitor<TreeNode<T>>
 	protected abstract void println(String line);
 
 	@Override
-	public void visit(TreeNode<T> node, int depth, int index, int numSiblings)
+	public void visit(T element, int depth, int index, int numSiblings)
 	{
 		StringBuilder buffer = new StringBuilder();
 		for (int i = 0; i < depth; i++) {
@@ -34,7 +33,6 @@ public abstract class PrintVisitor<T> implements Visitor<TreeNode<T>>
 			buffer.append("] ");
 		}
 
-		T element = node.getElement();
 		buffer.append(element == null ? "null" : element.toString());
 		println(buffer.toString());
 	}

@@ -5,10 +5,8 @@ package de.topobyte.adt.tree.visitors;
 
 import de.topobyte.adt.misc.Stack;
 import de.topobyte.adt.tree.PrePostVisitor;
-import de.topobyte.adt.tree.TreeNode;
 
-public abstract class PrePostPrintVisitor<T>
-		implements PrePostVisitor<TreeNode<T>>
+public abstract class PrePostPrintVisitor<T> implements PrePostVisitor<T>
 {
 
 	private boolean printIndex;
@@ -23,13 +21,13 @@ public abstract class PrePostPrintVisitor<T>
 	protected abstract void println(String line);
 
 	@Override
-	public void visitIn(TreeNode<T> node, int depth, int index, int numSiblings)
+	public void visitIn(T element, int depth, int index, int numSiblings)
 	{
 		StringBuilder buffer = new StringBuilder();
 		for (int i = 0; i < depth; i++) {
 			buffer.append("  ");
 		}
-		T element = node.getElement();
+
 		if (depth > 0) {
 			elements.push(element);
 		}
@@ -47,8 +45,7 @@ public abstract class PrePostPrintVisitor<T>
 	}
 
 	@Override
-	public void visitOut(TreeNode<T> element, int depth, int index,
-			int numSiblings)
+	public void visitOut(T element, int depth, int index, int numSiblings)
 	{
 		if (depth > 0) {
 			elements.pop();

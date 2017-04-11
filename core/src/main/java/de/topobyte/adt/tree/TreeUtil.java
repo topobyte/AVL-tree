@@ -6,17 +6,16 @@ package de.topobyte.adt.tree;
 public class TreeUtil
 {
 
-	public static <T> void traversePreorder(Tree<T> tree,
-			Visitor<TreeNode<T>> visitor)
+	public static <T> void traversePreorder(Tree<T> tree, Visitor<T> visitor)
 	{
 		TreeNode<T> root = tree.getRoot();
 		traversePreorder(root, visitor, 0, 0, 1);
 	}
 
 	public static <T> void traversePreorder(TreeNode<T> node,
-			Visitor<TreeNode<T>> visitor, int depth, int index, int numSiblings)
+			Visitor<T> visitor, int depth, int index, int numSiblings)
 	{
-		visitor.visit(node, depth, index, numSiblings);
+		visitor.visit(node.getElement(), depth, index, numSiblings);
 		int numChildren = node.getNumberOfChildren();
 		for (int i = 0; i < numChildren; i++) {
 			TreeNode<T> child = node.getChild(i);
@@ -43,22 +42,21 @@ public class TreeUtil
 		}
 	}
 
-	public static <T> void traversePostorder(Tree<T> tree,
-			Visitor<TreeNode<T>> visitor)
+	public static <T> void traversePostorder(Tree<T> tree, Visitor<T> visitor)
 	{
 		TreeNode<T> root = tree.getRoot();
 		traversePostorder(root, visitor, 0, 0, 1);
 	}
 
 	public static <T> void traversePostorder(TreeNode<T> node,
-			Visitor<TreeNode<T>> visitor, int depth, int index, int numSiblings)
+			Visitor<T> visitor, int depth, int index, int numSiblings)
 	{
 		int numChildren = node.getNumberOfChildren();
 		for (int i = 0; i < numChildren; i++) {
 			TreeNode<T> child = node.getChild(i);
 			traversePostorder(child, visitor, depth + 1, i, numChildren);
 		}
-		visitor.visit(node, depth, index, numSiblings);
+		visitor.visit(node.getElement(), depth, index, numSiblings);
 	}
 
 	public static <T> void traversePostorder(Tree<T> tree,
@@ -80,24 +78,23 @@ public class TreeUtil
 		visitor.visit(node, depth, index, numSiblings);
 	}
 
-	public static <T> void traverse(Tree<T> tree,
-			PrePostVisitor<TreeNode<T>> visitor)
+	public static <T> void traverse(Tree<T> tree, PrePostVisitor<T> visitor)
 	{
 		TreeNode<T> root = tree.getRoot();
 		traverse(root, visitor, 0, 0, 1);
 	}
 
-	public static <T> void traverse(TreeNode<T> node,
-			PrePostVisitor<TreeNode<T>> visitor, int depth, int index,
-			int numSiblings)
+	public static <T> void traverse(TreeNode<T> node, PrePostVisitor<T> visitor,
+			int depth, int index, int numSiblings)
 	{
-		visitor.visitIn(node, depth, index, numSiblings);
+		T element = node.getElement();
+		visitor.visitIn(element, depth, index, numSiblings);
 		int numChildren = node.getNumberOfChildren();
 		for (int i = 0; i < numChildren; i++) {
 			TreeNode<T> child = node.getChild(i);
 			traverse(child, visitor, depth + 1, i, numChildren);
 		}
-		visitor.visitOut(node, depth, index, numSiblings);
+		visitor.visitOut(element, depth, index, numSiblings);
 	}
 
 	public static <T> void traverse(Tree<T> tree,

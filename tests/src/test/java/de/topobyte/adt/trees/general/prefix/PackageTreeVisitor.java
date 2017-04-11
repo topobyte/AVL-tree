@@ -3,10 +3,9 @@
  */
 package de.topobyte.adt.trees.general.prefix;
 
-import de.topobyte.adt.tree.TreeNode;
-import de.topobyte.adt.tree.Visitor;
+import de.topobyte.adt.tree.TreeNodeVisitor;
 
-public interface PackageTreeVisitor<A> extends Visitor<TreeNode<PackageNode<A>>>
+public interface PackageTreeVisitor<A> extends TreeNodeVisitor<PackageNode<A>>
 {
 
 }
