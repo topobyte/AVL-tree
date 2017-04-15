@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2017 Sebastian Kürten.
  */
-package de.topobyte.adt.trees.general.prefix;
+package de.topobyte.adt.trees.general.prefix.packages;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

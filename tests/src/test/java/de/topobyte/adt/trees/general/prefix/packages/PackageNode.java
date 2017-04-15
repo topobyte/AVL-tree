@@ -1,7 +1,9 @@
 /**
  * Copyright (C) 2016 Sebastian Kürten.
  */
-package de.topobyte.adt.trees.general.prefix;
+package de.topobyte.adt.trees.general.prefix.packages;
+
+import de.topobyte.adt.trees.general.prefix.DefaultPrefixNode;
 
 public class PackageNode<Data> extends DefaultPrefixNode<String, Data>
 {

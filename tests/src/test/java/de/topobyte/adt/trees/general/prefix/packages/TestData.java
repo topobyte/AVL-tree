@@ -1,4 +1,4 @@
-package de.topobyte.adt.trees.general.prefix;
+package de.topobyte.adt.trees.general.prefix.packages;
 
 import java.util.ArrayList;
 import java.util.List;

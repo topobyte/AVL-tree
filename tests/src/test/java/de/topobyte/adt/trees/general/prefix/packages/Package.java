@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2016 Sebastian Kürten.
  */
-package de.topobyte.adt.trees.general.prefix;
+package de.topobyte.adt.trees.general.prefix.packages;
 
 import java.util.Arrays;
 import java.util.List;
