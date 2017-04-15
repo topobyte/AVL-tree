@@ -20,6 +20,8 @@ public class TestData
 		for (Package p : packages) {
 			tree.insert(p.getParts(), true);
 		}
+
+		tree.insert(new ArrayList<String>(), true);
 		return tree;
 	}
 

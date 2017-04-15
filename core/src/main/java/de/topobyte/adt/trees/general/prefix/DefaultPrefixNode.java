@@ -30,7 +30,7 @@ public class DefaultPrefixNode<Label, Data> implements PrefixNode<Label, Data>
 	@Override
 	public boolean isRootNode()
 	{
-		return false;
+		return parent == null;
 	}
 
 	@Override
@@ -54,6 +54,9 @@ public class DefaultPrefixNode<Label, Data> implements PrefixNode<Label, Data>
 	@Override
 	public String toString()
 	{
+		if (label == null) {
+			return "null";
+		}
 		return label.toString();
 	}
 
@@ -62,7 +65,7 @@ public class DefaultPrefixNode<Label, Data> implements PrefixNode<Label, Data>
 	{
 		LinkedList<Label> path = new LinkedList<>();
 		PrefixNode<Label, Data> iter = this;
-		while (iter != null) {
+		while (!iter.isRootNode()) {
 			path.addFirst(iter.getLabel());
 			iter = iter.getParent();
 		}

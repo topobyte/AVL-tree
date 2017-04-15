@@ -24,12 +24,13 @@ public class TestSpecialVisitors
 					int depth, int index, int numSiblings)
 			{
 				PackageNode<Boolean> element = node.getElement();
-				if (element == null) {
+				if (element.isRootNode()) {
 					System.out.println("*root*");
 				} else {
 					System.out.println(element.toPackage());
 				}
 			}
+
 		};
 
 		System.out.println("Print packages");
@@ -42,13 +43,13 @@ public class TestSpecialVisitors
 					int depth, int index, int numSiblings)
 			{
 				PackageNode<Boolean> element = node.getElement();
-				if (element == null) {
+				if (element.isRootNode()) {
 					System.out.println("*root*");
 				} else {
 					System.out.println(element.toPackage());
-					List<String> subs = subPackageNames(node);
-					System.out.println("   -> " + subs);
 				}
+				List<String> subs = subPackageNames(node);
+				System.out.println("   -> " + subs);
 			}
 
 		};

@@ -33,7 +33,7 @@ public abstract class PrintVisitor<T> implements Visitor<T>
 			buffer.append("] ");
 		}
 
-		buffer.append(element == null ? "null" : element.toString());
+		buffer.append(element);
 		println(buffer.toString());
 	}
 

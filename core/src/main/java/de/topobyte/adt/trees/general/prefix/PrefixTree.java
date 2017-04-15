@@ -26,6 +26,7 @@ public abstract class PrefixTree<Label, Data, N extends PrefixNode<Label, Data>>
 			}
 
 		});
+		getRoot().setElement(createNode(null, null, null));
 	}
 
 	protected abstract N createNode(N parent, Label label, Data data);
