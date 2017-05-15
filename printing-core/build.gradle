@@ -3,12 +3,6 @@ if (project.hasProperty("topobyte")) {
         + '/.gradle/topobyte.gradle'
 }
 
-repositories {
-    maven {
-        url 'http://mvn.topobyte.de'
-    }
-}
-
 dependencies {
     compile project(':adt-tree')
 
