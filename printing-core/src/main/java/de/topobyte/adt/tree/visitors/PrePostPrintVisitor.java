@@ -5,20 +5,22 @@ package de.topobyte.adt.tree.visitors;
 
 import de.topobyte.adt.misc.Stack;
 import de.topobyte.adt.tree.PrePostVisitor;
+import de.topobyte.lineprinter.LinePrinter;
 
-public abstract class PrePostPrintVisitor<T> implements PrePostVisitor<T>
+public class PrePostPrintVisitor<T> implements PrePostVisitor<T>
 {
+
+	private LinePrinter printer;
 
 	private boolean printIndex;
 
 	private Stack<T> elements = new Stack<>();
 
-	public PrePostPrintVisitor(boolean printIndex)
+	public PrePostPrintVisitor(LinePrinter printer, boolean printIndex)
 	{
+		this.printer = printer;
 		this.printIndex = printIndex;
 	}
-
-	protected abstract void println(String line);
 
 	@Override
 	public void visitIn(T element, int depth, int index, int numSiblings)
@@ -41,7 +43,7 @@ public abstract class PrePostPrintVisitor<T> implements PrePostVisitor<T>
 		}
 
 		buffer.append(element == null ? "null" : element.toString());
-		println(buffer.toString() + ": " + elements.asList());
+		printer.println(buffer.toString() + ": " + elements.asList());
 	}
 
 	@Override

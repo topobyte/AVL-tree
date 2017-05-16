@@ -7,6 +7,7 @@ dependencies {
     compile project(':adt-tree')
 
     compile 'de.topobyte:adt-misc:0.0.2'
+    compile 'de.topobyte:line-printer-core:0.0.1'
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {

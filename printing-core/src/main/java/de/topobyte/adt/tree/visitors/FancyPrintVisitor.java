@@ -5,6 +5,7 @@ package de.topobyte.adt.tree.visitors;
 
 import de.topobyte.adt.misc.Stack;
 import de.topobyte.adt.tree.PrePostVisitor;
+import de.topobyte.lineprinter.LinePrinter;
 
 /**
  * A printer tree visitor that depicts the structure of a tree using ASCII
@@ -25,8 +26,10 @@ import de.topobyte.adt.tree.PrePostVisitor;
  * 
  * @author Sebastian Kuerten
  */
-public abstract class FancyPrintVisitor<T> implements PrePostVisitor<T>
+public class FancyPrintVisitor<T> implements PrePostVisitor<T>
 {
+
+	private LinePrinter printer;
 
 	private boolean printIndex;
 
@@ -38,12 +41,11 @@ public abstract class FancyPrintVisitor<T> implements PrePostVisitor<T>
 	// siblings.
 	private Stack<Boolean> last = new Stack<>();
 
-	public FancyPrintVisitor(boolean printIndex)
+	public FancyPrintVisitor(LinePrinter printer, boolean printIndex)
 	{
+		this.printer = printer;
 		this.printIndex = printIndex;
 	}
-
-	protected abstract void println(String line);
 
 	@Override
 	public void visitIn(T element, int depth, int index, int numSiblings)
@@ -84,7 +86,7 @@ public abstract class FancyPrintVisitor<T> implements PrePostVisitor<T>
 		}
 
 		buffer.append(element == null ? "null" : element.toString());
-		println(buffer.toString() + ": " + elements.asList());
+		printer.println(buffer.toString() + ": " + elements.asList());
 	}
 
 	@Override

@@ -12,12 +12,12 @@ import de.topobyte.adt.tree.visitors.FancyPrintVisitor;
 import de.topobyte.adt.tree.visitors.PrePostPrintVisitor;
 import de.topobyte.adt.tree.visitors.PrintVisitor;
 import de.topobyte.adt.tree.visitors.TreeNodePrePostPrintVisitor;
-import de.topobyte.adt.tree.visitors.slf4j.LogLevel;
 import de.topobyte.adt.tree.visitors.slf4j.Slf4jFancyPrintVisitor;
 import de.topobyte.adt.tree.visitors.slf4j.Slf4jPrePostPrintVisitor;
 import de.topobyte.adt.tree.visitors.slf4j.Slf4jPrintVisitor;
 import de.topobyte.adt.tree.visitors.slf4j.Slf4jTreeNodePrePostPrintVisitor;
 import de.topobyte.adt.tree.visitors.slf4j.Slf4jTreeNodePrintVisitor;
+import de.topobyte.lineprinter.sfl4j.LogLevel;
 
 public class TestTreeVisitorsSlf4j
 {

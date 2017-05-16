@@ -6,7 +6,7 @@ if (project.hasProperty("topobyte")) {
 dependencies {
     compile project(':adt-tree-printing-core')
 
-    compile 'org.slf4j:slf4j-api:1.6.1'
+    compile 'de.topobyte:line-printer-slf4j:0.0.1'
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {

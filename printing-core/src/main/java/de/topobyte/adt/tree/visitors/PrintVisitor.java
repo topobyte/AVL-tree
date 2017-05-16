@@ -4,18 +4,20 @@
 package de.topobyte.adt.tree.visitors;
 
 import de.topobyte.adt.tree.Visitor;
+import de.topobyte.lineprinter.LinePrinter;
 
-public abstract class PrintVisitor<T> implements Visitor<T>
+public class PrintVisitor<T> implements Visitor<T>
 {
+
+	private LinePrinter printer;
 
 	private boolean printIndex;
 
-	public PrintVisitor(boolean printIndex)
+	public PrintVisitor(LinePrinter printer, boolean printIndex)
 	{
+		this.printer = printer;
 		this.printIndex = printIndex;
 	}
-
-	protected abstract void println(String line);
 
 	@Override
 	public void visit(T element, int depth, int index, int numSiblings)
@@ -34,7 +36,7 @@ public abstract class PrintVisitor<T> implements Visitor<T>
 		}
 
 		buffer.append(element);
-		println(buffer.toString());
+		printer.println(buffer.toString());
 	}
 
 }

@@ -4,6 +4,7 @@
 package de.topobyte.adt.tree.visitors.stdio;
 
 import de.topobyte.adt.tree.visitors.TreeNodePrePostPrintVisitor;
+import de.topobyte.lineprinter.SystemOutPrinter;
 
 public class StdTreeNodePrePostPrintVisitor<T>
 		extends TreeNodePrePostPrintVisitor<T>
@@ -11,13 +12,7 @@ public class StdTreeNodePrePostPrintVisitor<T>
 
 	public StdTreeNodePrePostPrintVisitor(boolean printIndex)
 	{
-		super(printIndex);
-	}
-
-	@Override
-	protected void println(String line)
-	{
-		System.out.println(line);
+		super(new SystemOutPrinter(), printIndex);
 	}
 
 }

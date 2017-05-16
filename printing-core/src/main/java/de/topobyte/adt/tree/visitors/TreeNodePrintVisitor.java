@@ -5,18 +5,20 @@ package de.topobyte.adt.tree.visitors;
 
 import de.topobyte.adt.tree.TreeNode;
 import de.topobyte.adt.tree.TreeNodeVisitor;
+import de.topobyte.lineprinter.LinePrinter;
 
-public abstract class TreeNodePrintVisitor<T> implements TreeNodeVisitor<T>
+public class TreeNodePrintVisitor<T> implements TreeNodeVisitor<T>
 {
+
+	private LinePrinter printer;
 
 	private boolean printIndex;
 
-	public TreeNodePrintVisitor(boolean printIndex)
+	public TreeNodePrintVisitor(LinePrinter printer, boolean printIndex)
 	{
+		this.printer = printer;
 		this.printIndex = printIndex;
 	}
-
-	protected abstract void println(String line);
 
 	@Override
 	public void visit(TreeNode<? extends T> node, int depth, int index,
@@ -37,7 +39,7 @@ public abstract class TreeNodePrintVisitor<T> implements TreeNodeVisitor<T>
 
 		T element = node.getElement();
 		buffer.append(element == null ? "null" : element.toString());
-		println(buffer.toString());
+		printer.println(buffer.toString());
 	}
 
 }
