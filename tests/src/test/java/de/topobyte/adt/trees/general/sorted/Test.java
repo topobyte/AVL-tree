@@ -15,15 +15,10 @@ public class Test
 	public static void main(String[] args)
 	{
 		SortedTree<String> tree = new SortedTree<>();
-		Node<String> root = tree.getRoot();
 
 		System.out.println(tree.getHeight());
 
-		Node<String> foo = root.add("foo");
-		Node<String> bar = root.add("bar");
-		bar.add("cat");
-		bar.add("tomcat");
-		foo.add("bar again");
+		Trees.small(tree);
 
 		System.out.println(tree.getHeight());
 
