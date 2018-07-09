@@ -17,6 +17,9 @@ combination not found on any standard class. For example the default TreeSet imp
 provides a SortedSet but does not expose a **get(index)** method. I think such a function makes
 perfect sense for a sorted set, which is why this tree implementation provides it.
 
+SortedSet and List views on the tree are provided with the asSet() and asList()
+methods.
+
 ## Sorted tree
 
 A generic tree with any number of children.
