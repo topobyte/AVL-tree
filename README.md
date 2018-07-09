@@ -17,6 +17,14 @@ combination not found on any standard class. For example the default TreeSet imp
 provides a SortedSet but does not expose a **get(index)** method. I think such a function makes
 perfect sense for a sorted set, which is why this tree implementation provides it.
 
+## Sorted tree
+
+A generic tree with any number of children.
+
+## Prefix tree
+
+A generic prefix tree or trie.
+
 # License
 
 This software is released under the terms of the **GNU Lesser General Public License Version 3** **(GNU LGPLv3)**
