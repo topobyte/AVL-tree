@@ -47,6 +47,16 @@ public class TestSmall
 		assertDoesntContainPath(tree, "foo", "else");
 		assertDoesntContainPath(tree, "else", "more");
 
+		testFindNode(tree, new String[0]);
+		testFindNode(tree, "bar");
+		testFindNode(tree, "bar", "cat");
+		testFindNode(tree, "bar", "tomcat");
+		testFindNode(tree, "foo");
+		testFindNode(tree, "foo", "bar again");
+		testDontFindNode(tree, "else");
+		testDontFindNode(tree, "foo", "else");
+		testDontFindNode(tree, "else", "more");
+
 		testValidPath(tree, new String[0]);
 		testValidPath(tree, "bar");
 		testValidPath(tree, "bar", "cat");
@@ -67,6 +77,25 @@ public class TestSmall
 			String... values)
 	{
 		Assert.assertFalse(SortedTreeUtil.hasPath(tree, Arrays.asList(values)));
+	}
+
+	private void testFindNode(SortedTree<String> tree, String... values)
+	{
+		Node<String> node = SortedTreeUtil.findNode(tree,
+				Arrays.asList(values));
+		Assert.assertNotNull(node);
+		if (values.length == 0) {
+			Assert.assertNull(node.getElement());
+		} else {
+			values[values.length - 1].equals(node.getElement());
+		}
+	}
+
+	private void testDontFindNode(SortedTree<String> tree, String... values)
+	{
+		Node<String> node = SortedTreeUtil.findNode(tree,
+				Arrays.asList(values));
+		Assert.assertNull(node);
 	}
 
 	private void testValidPath(SortedTree<String> tree, String... values)
